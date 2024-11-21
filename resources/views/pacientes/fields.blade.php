@@ -1,5 +1,3 @@
-    
-
 <form action="{{ route('pacientes.store') }}" method="POST" id="pacienteForm">
     @csrf <!-- Include CSRF token for security -->
 
@@ -34,7 +32,7 @@
 
         <div class="col-md-6 mb-3">
             <label for="cedula">Cédula:</label>
-            <input type="text" id="cedula" name="cedula" class="form-control" >
+            <input type="text" id="cedula" name="cedula" class="form-control">
             @error('cedula')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -42,6 +40,13 @@
     </div>
 
     <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="estatura">Peso (kg):</label>
+            <input type="number" step="any" id="peso" name="peso" class="form-control" required>
+            @error('estatura')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="col-md-6 mb-3">
             <label for="estatura">Estatura (cm):</label>
             <input type="number" step="any" id="estatura" name="estatura" class="form-control" required>
@@ -67,6 +72,17 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <div class="col-md-6 mb-3">
+            <label for="lateralidad">Genero:</label>
+            <select id="genero" name="genero" class="form-control" required>
+                <option value="">Seleccione</option>
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
+            </select>
+            @error('lateralidad')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="row">
@@ -81,7 +97,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
+       
         <div class="col-md-6 mb-3">
             <label for="posee_discapacidad">¿Posee Discapacidad?</label>
             <select id="posee_discapacidad" name="posee_discapacidad" class="form-control" required>

@@ -21,6 +21,8 @@ class Paciente extends Model
         'representante_id',
         'colegio',
         'grado',
+        'peso',
+        'genero'
     ];
  
      public function representante()

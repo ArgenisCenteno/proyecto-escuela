@@ -5,6 +5,7 @@
                 <th >#</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
+                <th>Genero</th>
                 <th>Discapacidad</th>
                 <th>Representante</th>
                 <th>Fecha de registro</th>
@@ -45,6 +46,10 @@
                 {
                     data: 'apellido',
                     name: 'apellido',
+                },
+                {
+                    data: 'genero',
+                    name: 'genero',
                 },
                
                 {

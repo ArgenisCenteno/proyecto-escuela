@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/paciente-tratamientos/export', [PacienteTratamientoController::class, 'export'])->name('pacienteTratamientos.export');
     Route::get('/pacientes/export', [PacienteController::class, 'export'])->name('pacientes.export');
     Route::get('/pdf/{id}', [PacienteController::class, 'pdf'])->name('pacientes.pdf');
+    Route::resource('usuarios', App\Http\Controllers\UserController::class);
 
     Route::resource('pacientes', PacienteController::class);
     Route::resource('representantes', RepresentanteController::class);

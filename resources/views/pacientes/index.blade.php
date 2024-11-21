@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-md-6 col-6">
 
-                                <h3 class="p-2 bold">Alumnos</h3>
+                                <h3 class="p-2 bold">Estudiantes</h3>
 
                                
                             </div>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="d-flex justify-content-end mt-3">
                             <a href="{{ route('pacientes.export') }}" class="btn btn-success mr-2">
-                                    Exportar Pacientes
+                                    Exportar Estudiantes
                                 </a>
 
                                 <a class="btn btn-primary" href="{{route('pacientes.create')}}">Registrar</a>

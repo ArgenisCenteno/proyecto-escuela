@@ -9,24 +9,21 @@
     </div>
     <div class="col-md-6 mb-3">
         <label for="nombre">Cédula:</label>
-        <input type="text" class="form-control"
-            value="{{$paciente->representante->cedula }}" readonly>
+        <input type="text" class="form-control" value="{{$paciente->representante->cedula }}" readonly>
         @error('nombre')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
     <div class="col-md-6 mb-3">
         <label for="nombre">Telefono:</label>
-        <input type="text" class="form-control"
-            value="{{$paciente->representante->telefono}}" readonly>
+        <input type="text" class="form-control" value="{{$paciente->representante->telefono}}" readonly>
         @error('nombre')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
     <div class="col-md-6 mb-3">
         <label for="nombre">Dirección:</label>
-        <input type="text" class="form-control"
-            value="{{$paciente->representante->residencia}}" readonly>
+        <input type="text" class="form-control" value="{{$paciente->representante->residencia}}" readonly>
         @error('nombre')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -79,6 +76,14 @@
 
     <div class="row">
         <div class="col-md-6 mb-3">
+            <label for="estatura">Peso (kg):</label>
+            <input type="number" step="any" id="peso" name="peso" class="form-control"
+                value="{{ old('peso', $paciente->peso) }}" required>
+            @error('estatura')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="col-md-6 mb-3">
             <label for="estatura">Estatura (cm):</label>
             <input type="number" step="any" id="estatura" name="estatura" class="form-control"
                 value="{{ old('estatura', $paciente->estatura) }}" required>
@@ -106,6 +111,20 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <div class="col-md-6 mb-3">
+            <label for="genero">Genero:</label>
+            <select id="genero" name="genero" class="form-control" required>
+                <option value="">Seleccione</option>
+                <option value="MASCULINO" {{ old('genero', $paciente->genero) == 'MASCULINO' ? 'selected' : '' }}>
+                    MASCULINO</option>
+                <option value="FEMENINO" {{ old('genero', $paciente->genero) == 'FEMENINO' ? 'selected' : '' }}>FEMENINO
+                </option>
+            </select>
+            @error('genero')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
     </div>
 
     <div class="row">

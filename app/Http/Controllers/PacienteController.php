@@ -73,7 +73,7 @@ class PacienteController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'fecha_nacimiento' => 'required|date|before:today', // Ensure the date is before today
-            'cedula' => 'required|string|max:20|unique:pacientes,cedula', // Ensure cedula is unique
+          
             'estatura' => 'required|numeric|min:0',
             'tipo_sangre' => 'required|string',
             'lateralidad' => 'required|string',
@@ -126,7 +126,7 @@ class PacienteController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'fecha_nacimiento' => 'required|date',
-            'cedula' => 'nullable|string|max:20',
+     
             'estatura' => 'required|numeric',
             'tipo_sangre' => 'required|string',
             'lateralidad' => 'required|string',
@@ -156,7 +156,8 @@ class PacienteController extends Controller
         $paciente->representante_id = $request->input('representante_id');
         $paciente->colegio = $request->input('colegio');
         $paciente->grado = $request->input('grado');
-
+        $paciente->genero = $request->input('genero');
+        $paciente->peso = $request->input('peso');
         // Save the updated patient record
         $paciente->save();
 

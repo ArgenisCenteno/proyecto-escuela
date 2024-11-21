@@ -11,21 +11,19 @@
                                 @include('flash::message')
                             </div>
                             <div class="col-md-6 col-6">
+                                <h3 class="p-2 bold">Usuarios</h3>
+                            </div>
+                            @if (auth()->user()->hasRole('Administrador') ||  auth()->user()->hasRole('Director'))
+                                <div class="d-flex justify-content-end mt-3">
+                                    <a href="{{ route('usuarios.create') }}"
+                                        class="btn btn-primary round mx-1">Registrar</a>
+                                </div>
+                            @endif
 
-                                <h3 class="p-2 bold">Docentes</h3>
-
-                               
-                            </div>
-                            <div class="col-md-6 mt-4">
-                           
-                            </div>
-                            <div class="d-flex justify-content-end mt-3">
-                                <a class="btn btn-primary" href="{{route('especialistas.create')}}">Registrar</a>
-                            </div>
                         </div>
                         <div class="card-body">
 
-                            @include('especialistas.table')
+                            @include('usuarios.table')
                         </div>
                     </div>
                 </div>
