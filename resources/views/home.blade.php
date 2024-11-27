@@ -19,7 +19,7 @@
                     <div class="small-box bg-primary-app">
                         <div class="inner">
                             <h3>{{$productos}}</h3>
-                            <p>Alumnos</p>
+                            <p>Estudiantes</p>
                         </div> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="small-box-icon">
     <path d="M12 2c-4.418 0-8 3.582-8 8v4a6 6 0 006 6h1v4h2v-4h1a6 6 0 006-6v-4c0-4.418-3.582-8-8-8zm0 2c3.313 0 6 2.687 6 6v4a4 4 0 01-4 4h-4a4 4 0 01-4-4v-4c0-3.313 2.687-6 6-6zm0 12a2 2 0 100 4 2 2 0 000-4zM8 7a1 1 0 011-1h6a1 1 0 011 1v1H8V7z"/>
 </svg>
@@ -43,7 +43,7 @@
                     <div class="small-box bg-danger-app">
                         <div class="inner">
                             <h3>{{$solicitudes}}</h3>
-                            <p>Especialistas</p>
+                            <p>Docentes</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path
@@ -105,7 +105,7 @@
                     <div class="small-box text-bg-success">
                         <div class="inner">
                             <h3>{{$proveedores}}</h3>
-                            <p>Notas médicas</p>
+                            <p>Observaciones</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"
@@ -121,7 +121,7 @@
                     <div class="small-box text-bg-primary">
                         <div class="inner">
                             <h3>{{$personal}}</h3>
-                            <p>Pacientes en tratamientos</p>
+                            <p>Estudiantes en terapia</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"

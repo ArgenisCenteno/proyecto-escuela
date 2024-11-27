@@ -28,7 +28,9 @@ class PacienteController extends Controller
                         ' . csrf_field() . method_field('DELETE') . '
                         <button type="submit" class="btn btn-danger btn-delete"><span>Eliminar</span></button>
                     </form>
-                    <a href="' . route('pacientes.pdf', [$row->id]) . '" class="btn btn-success" target="_blank"><span> PDF</span></a>';
+                    <a href="' . route('pacientes.pdf', [$row->id]) . '" class="btn btn-success" target="_blank"><span> PDF</span></a>
+                     <a href="' . route('pacientes.pdfCedula', [$row->id]) . '" class="btn btn-warning" target="_blank"><span> Cédula</span></a>
+                    ';
             })
             
 
@@ -214,5 +216,28 @@ class PacienteController extends Controller
         return $pdf->stream($nombreArchivo);
     }
     
+    public function pdfCedula($id)
+    {
+        // Obtener el paciente por su ID
+        $paciente = Paciente::findOrFail($id);
+        
+        // Obtener citas y tratamientos asociados al paciente
+        $citas = Cita::where('paciente_id', $paciente->id)->get();
+        $tratamientos = PacienteTratamiento::where('paciente_id', $paciente->id)->get();
+        //dd($tratamientos);
+        // Generar el PDF
+        $pdf = PDF::loadView('pacientes.pdfCedula', [
+            'paciente' => $paciente,
+            'citas' => $citas,
+            'tratamientos' => $tratamientos,
+        ]);
+    
+        // Establecer el nombre del archivo como el nombre completo del paciente
+        $nombreCompleto = strtoupper($paciente->nombre . ' ' . $paciente->apellido);
+        $nombreArchivo = 'registro_' . $nombreCompleto . '.pdf';
+    
+        // En lugar de descargar, hacer streaming del PDF
+        return $pdf->stream($nombreArchivo);
+    }
 
 }

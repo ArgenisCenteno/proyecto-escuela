@@ -124,7 +124,7 @@
             }
 
             // Validation for age and input content
-            if (edad > 15) {
+            if (edad > 12) {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
                 $(this).next('.invalid-feedback').text('');

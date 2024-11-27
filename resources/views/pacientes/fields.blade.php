@@ -97,28 +97,27 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-       
         <div class="col-md-6 mb-3">
-            <label for="posee_discapacidad">¿Posee Discapacidad?</label>
-            <select id="posee_discapacidad" name="posee_discapacidad" class="form-control" required>
-                <option value="">Seleccione</option>
-                <option value="1">Sí</option>
-                <option value="0">No</option>
-            </select>
-            @error('posee_discapacidad')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+    <label for="posee_discapacidad">¿Posee Discapacidad?</label>
+    <select id="posee_discapacidad" name="posee_discapacidad" class="form-control" required>
+        <option value="">Seleccione</option>
+        <option value="1">Sí</option>
+        <option value="0">No</option>
+    </select>
+    @error('posee_discapacidad')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
     </div>
 
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="nota">Nota:</label>
-            <textarea id="nota" name="nota" class="form-control"></textarea>
-            @error('nota')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+    <div class="col-md-6 mb-3" id="nota-container" style="display: none;">
+    <label for="nota">Nota:</label>
+    <textarea id="nota" name="nota" class="form-control"></textarea>
+    @error('nota')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
 
         <div class="col-md-6 mb-3">
             <label for="representante_id">Representante:</label>

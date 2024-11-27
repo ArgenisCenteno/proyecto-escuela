@@ -30,7 +30,7 @@ class PacienteTratamientoController extends Controller
                 })
               ->editColumn('especialista', function($row){
                 if($row->especialista != null){
-                    dd($row->especialista);
+                   // dd($row->especialista);
                     return $row->especialista->nombre . ' ' . $row->especialista->apellido;
 
                 }else{

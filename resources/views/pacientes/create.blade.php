@@ -122,7 +122,20 @@
     $('#estatura').on('input', function () {
         estatura = $(this).val();
 
-        if ( estatura >= 100) {
+        if ( estatura >= 40) {
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                $(this).next('.invalid-feedback').text('');
+            } else {
+                $(this).addClass('is-invalid');
+                $(this).next('.invalid-feedback').text('Estatura incongruente.');
+            }
+    })
+
+    $('#peso').on('input', function () {
+        estatura = $(this).val();
+
+        if ( estatura >= 3) {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
                 $(this).next('.invalid-feedback').text('');
@@ -139,6 +152,18 @@
         $('#representante_id').select2({
             placeholder: "Seleccione un Representante",
             allowClear: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Escuchar cambios en el select
+        $('#posee_discapacidad').on('change', function () {
+            if ($(this).val() === "1") {
+                $('#nota-container').show(); // Mostrar
+            } else {
+                $('#nota-container').hide(); // Ocultar
+            }
         });
     });
 </script>

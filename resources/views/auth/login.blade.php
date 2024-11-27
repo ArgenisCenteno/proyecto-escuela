@@ -48,9 +48,9 @@
           </div>
         </form>
       </div>
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://img.freepik.com/vector-premium/edificio-escolar-diseno-suministros_24640-49244.jpg?w=740"   class="img-fluid"
-          alt="Sample image">
+      <div class="col-md-9 col-lg-8 col-xl-5"> 
+        <img src="{{asset('iconos/banner.jpg')}}"     class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+         
       </div>
     </div>
   </div>
