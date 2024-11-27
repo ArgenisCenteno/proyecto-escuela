@@ -106,13 +106,13 @@
             }
 
             // Validation for age and input content
-            if (edad > 3) {
+            if (edad > 1) {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
                 $(this).next('.invalid-feedback').text('');
             } else {
                 $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('El representante debe tener más de 16 años.');
+                $(this).next('.invalid-feedback').text('El paciente debe tener más de 1 año.');
             }
 
 

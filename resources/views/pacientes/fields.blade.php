@@ -92,6 +92,7 @@
                 <option value="">Seleccione</option>
                 <option value="diestro">Diestro</option>
                 <option value="zurdo">Zurdo</option>
+                <option value="no aplica">No Aplica</option>
             </select>
             @error('lateralidad')
                 <div class="invalid-feedback">{{ $message }}</div>

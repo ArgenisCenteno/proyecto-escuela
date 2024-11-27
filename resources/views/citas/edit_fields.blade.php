@@ -105,19 +105,19 @@
         </div>
         <div class="col-md-12 mb-3">
             <label for="nota">Nota de la Cita:</label>
-            <textarea name="nota_cita" id="nota" class="form-control" rows="4" placeholder="Ingrese una nota aquí..."  
+            <textarea name="nota_cita" id="nota" class="form-control" rows="4" required placeholder="Ingrese una nota aquí..."  
                 required>{{$cita->nota ?? ''}}</textarea>
            
         </div>
         <div class="col-md-12 mb-3">
             <label for="nota">Nota Médica:</label>
-            <textarea name="nota_medica" id="nota" class="form-control" rows="4" placeholder="Ingrese una nota aquí..."  
+            <textarea name="nota_medica" id="nota" class="form-control" rows="4" required placeholder="Ingrese una nota aquí..."  
                 >{{$nota->nota ?? ''}}</textarea>
            
         </div>
         <div class="col-md-12 mb-3">
             <label for="nota">Nota de Asistencia:</label>
-            <textarea name="observacion_asistencia" id="observacion_asistencia" class="form-control" rows="4" placeholder="Ingrese una nota aquí..."  
+            <textarea name="observacion_asistencia" id="observacion_asistencia" required class="form-control" rows="4" placeholder="Ingrese una nota aquí..."  
                 >{{$asistencia->observacion ?? ''}}</textarea>
            
         </div>

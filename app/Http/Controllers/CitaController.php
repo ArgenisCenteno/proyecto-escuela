@@ -69,17 +69,22 @@ class CitaController extends Controller
                     return $row->representante->nombre . ' ' . $row->representante->apellido;
                 })
                 ->editColumn('asistencia', function ($row) {
-                    switch ($row->asistencia->estado) {
-                        case 'Tarde':
-                            return '<span class="badge badge-danger">Tarde</span>';
-                        case 'Asistió':
-                            return '<span class="badge badge-info">Asistió</span>';
-                        case 'No asistió':
-                            return '<span class="badge badge-success">No asistió</span>';
-                        
-                        default:
-                            return '<span class="badge badge-dark">No ha empezado</span>'; // Para manejar valores no esperados
+                    if(isset($row->asistencia->estado) ){
+                        switch ($row->asistencia->estado) {
+                            case 'Tarde':
+                                return '<span class="badge badge-danger">Tarde</span>';
+                            case 'Asistió':
+                                return '<span class="badge badge-info">Asistió</span>';
+                            case 'No asistió':
+                                return '<span class="badge badge-success">No asistió</span>';
+                            
+                            default:
+                                return '<span class="badge badge-dark">No ha empezado</span>'; // Para manejar valores no esperados
+                        }
+                    }else{
+                        return '<span class="badge badge-dark">No ha empezado</span>'; // Para manejar valores no esperados
                     }
+                    
                 })
                 ->rawColumns(['actions', 'estatus', 'asistencia'])
                 ->make(true);

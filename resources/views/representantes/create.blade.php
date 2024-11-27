@@ -130,7 +130,7 @@
                 $(this).next('.invalid-feedback').text('');
             } else {
                 $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('El representante debe tener más de 16 años.');
+                $(this).next('.invalid-feedback').text('El representante debe tener más de 11 años.');
             }
 
 

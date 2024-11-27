@@ -136,6 +136,8 @@
                     Diestro</option>
                 <option value="zurdo" {{ old('lateralidad', $paciente->lateralidad) == 'zurdo' ? 'selected' : '' }}>Zurdo
                 </option>
+                <option value="no aplica" {{ old('lateralidad', $paciente->lateralidad) == 'no aplica' ? 'selected' : '' }}>No Aplica
+                </option>
             </select>
             @error('lateralidad')
                 <div class="invalid-feedback">{{ $message }}</div>
