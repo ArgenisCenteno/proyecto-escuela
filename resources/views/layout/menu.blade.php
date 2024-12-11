@@ -69,7 +69,7 @@
                 @if(auth()->user()->hasRole('Administrador') || auth()->user()->hasRole('Director') )
                     <li class="nav-item">
                         <a href="{{ route('usuarios.index') }}" class="nav-link">
-                            <span class="nav-icon"><i class="fas fa-notes-medical"></i></span>
+                            <span class="nav-icon"><i class="fas fa-users-cog"></i></span>
                             <span class="nav-text text-white">Usuarios</span>
                         </a>
                     </li>
@@ -79,4 +79,4 @@
         </nav>
     </div> 
     <!--end::Sidebar Wrapper-->
-</aside> 
+</aside>

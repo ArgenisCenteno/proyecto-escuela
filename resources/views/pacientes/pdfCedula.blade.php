@@ -1,106 +1,239 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cédula Estudiantil - CDI "Luisa Cáceres de Arismendi</title>
-
-    <link rel="stylesheet" href="{{ public_path('css/bootstrap.min.css') }}"
-        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>CDI Luisa Caceres de Arismendi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
         body {
-            font-size: 12px;
-            font-family: Arial, sans-serif;
+            font-family: "Poppins" !important;
         }
 
-        .header {
-            text-align: center;
+        /* Container */
+        .card-container {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background: white;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .card-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
 
-        .header img {
-            width: 70px;
-            height: auto;
-        }
-
-        .container {
-            border: 1px solid #000;
-            padding: 15px;
-            width: 500px;
-            margin: 0 auto;
-            background-color: #f9f9f9;
-        }
-
-        .foto {
-            border: 1px solid #000;
-            width: 100px;
-            height: 120px;
-            margin-bottom: 10px;
-        }
-
-        .datos p {
-            margin: 5px 0;
-            line-height: 1.4;
-        }
-
-        .titulo {
+        .card-header .header-left,
+        .card-header .header-right {
             text-align: center;
-            font-size: 16px;
+        }
+
+        .title {
+            font-size: 23px;
+            text-align: center !important;
+            margin: 0;
+            color: #19306e;
             font-weight: bold;
-            margin-bottom: 10px;
         }
 
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 10px;
+        .title2 {
+            font-size: 16px;
+            margin: 0;
+            color: black;
+
         }
+
+        /* Info Section */
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .info-left {
+            flex: 0 0 150px;
+
+        }
+
+        .foto-estudiantes {
+            border-radius: 50% !important;
+            width: 300px !important;
+            height: 300px !important;
+        }
+
+        .info-right {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .info-right p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #19306e !important;
+            z-index: 999;
+        }
+
+
+
+        .logo {
+            width: 150px;
+        }
+
+        .banner {
+            position: relative;
+            display: inline-flex;
+            /* Cambiado a flexbox */
+            justify-content: center;
+            justify-content: center;
+            /* Alinea el texto horizontalmente */
+            align-items: center;
+            /* Alinea el texto verticalmente */
+            /* Alinea el texto horizontalmente */
+
+            width: 220px;
+            /* Ancho del banner */
+            height: 90px;
+            /* Alto del banner */
+            background: #daa520;
+            /* Fondo dorado */
+
+            /* Color del texto */
+            font-weight: bold;
+            font-size: 20px;
+            /* Tamaño del texto */
+            text-align: center;
+        }
+
+        .banner:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 45px 0 45px 45px;
+            /* Tamaño del triángulo */
+            border-color: transparent transparent transparent white;
+            /* Color del triángulo */
+        }
+
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+     
+
+     
+
+        /* Agregar las estrellas (si se desean) */
     </style>
 </head>
 
 <body>
+    <div class="card-container">
+        <div class="card-header">
+            <table class="table table-borderless p-0 m-0">
+                <thead>
+                    <tr class="">
+                        <td class=" text-left">
+                            <img src="{{public_path('iconos/logo.jpg')}}" class="logo" alt="Foto">
 
-    <div class="container">
-        <div class="header text-center">
-            <p style="margin: 0; font-size: 10px; font-weight: bold;">REPÚBLICA BOLÍVARIANA DE VENEZUELA</p>
-            <p style="margin: 0; font-size: 10px; font-weight: bold;">ESTADO MONAGAS</p>
-            <p style="margin: 0; font-size: 10px; font-weight: bold;">CDI "Luisa Cáceres de Arismendi"</p>
+
+                        </td>
+                        <td class=" text-left">
+                            <div class="header-left">
+                                <p class="bold title text-info">CENTRO DE DESARROLLO INFANTIL</p>
+                                <p class="bold title2 text-info">"LUISA CÁCERES DE ARISMENDI"</p>
+                            </div>
+
+                        </td>
+                        <td></td>
+
+                        <td></td>
+
+                        <td class="title">
+                            <div>
+                                <h4>CARNET ESTUDIANTIL</h>
+                            </div>
+                        </td>
+                    </tr>
+
+                </thead>
+            </table>
         </div>
 
-        <div class="text-center mt-2">
-            <h1 class="titulo">CÉDULA ESTUDIANTIL</h1>
-        </div>
+        <hr class="venezuela-flag"
+            style="height: 10px; border: none; background-color: #FFD700; margin-top: 40px !important;" />
+        <hr class="venezuela-flag" style="height: 10px; border: none; background-color: #0033A0;" />
+        <hr class="venezuela-flag"
+            style="height: 10px; border: none; background-color: #D52B1E; margin-bottom: 40px !important;" />
 
-        <div class="d-flex justify-content-between align-items-center mt-3">
-            <div class="foto" style="width: 100px; height: 120px; border: 1px solid #000;">
-                <!-- Espacio reservado para la foto -->
-            </div>
-            <div class="text-center">
-                <p><strong>Número:</strong> {{ $paciente->created_at->format('Ymd') . $paciente->id }}</p>
-            </div>
-        </div>
+        <div class="info-section">
+            <table class="table table-borderless p-0 m-0">
+                <thead>
+                    <tr class="">
+                        <td></td>
+                        <td></td>
+                        <td class="info-left">
+                            <img src="{{public_path('iconos/estudiantes.jpeg')}}" class="foto-estudiantes" alt="Foto">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
-        <div class="datos mt-3">
-            <p><strong>Nombre:</strong> {{ strtoupper($paciente->nombre . ' ' . $paciente->apellido) }}</p>
-            <p><strong>Cédula:</strong> {{ $paciente->cedula ?? 'N/A' }}</p>
-            <p><strong>Representante:</strong> 
-                {{ $paciente->representante ? strtoupper($paciente->representante->nombre . ' ' . $paciente->representante->apellido) : 'N/A' }}
-            </p>
-            <p><strong>Dirección:</strong> 
-                {{ $paciente->representante && $paciente->representante->residencia ? strtoupper($paciente->representante->residencia) : 'N/A' }}
-            </p>
-            <p><strong>Fecha de Inscripción:</strong> {{ $paciente->created_at->format('d/m/Y') }}</p>
-            <p><strong>Última Actualización:</strong> {{ $paciente->updated_at->format('d/m/Y') }}</p>
-        </div>
 
-        <div class="footer text-center mt-3">
-            <p style="margin: 0; font-size: 10px;">Emitida por la CDI "Luisa Cáceres de Arismendi"</p>
+
+
+                        <td class=" info-right left">
+
+                            <p class="p-4 m-4"><strong>ID:</strong>
+                                {{ $paciente->created_at->format('Ymd') . $paciente->id }}</p>
+                            <br>
+                            <p class="p-4 m-4"><strong>NOMBRE:</strong>
+                                {{ strtoupper($paciente->nombre . ' ' . $paciente->apellido) }}</p>
+                            <br>
+                            <p class="p-4 m-4"><strong>FECHA NACIMIENTO:</strong>
+                                {{ $paciente->fecha_nacimiento ?? '' }} </p>
+                            <br>
+                            <p class="p-4 m-4"><strong>REPRESENTANTE:</strong>
+                                {{ $paciente->representante ? strtoupper($paciente->representante->nombre . ' ' . $paciente->representante->apellido) : 'N/A' }}
+                            </p>
+                            <br>
+                            <p class="p-4 m-4"><strong>DIRECCIÓN:</strong>
+                                {{ $paciente->representante && $paciente->representante->residencia ? strtoupper($paciente->representante->residencia) : 'N/A' }}
+                            </p>
+
+
+                        </td>
+                        <td ></td>
+
+
+                    </tr>
+
+                </thead>
+            </table>
+
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 
 </html>

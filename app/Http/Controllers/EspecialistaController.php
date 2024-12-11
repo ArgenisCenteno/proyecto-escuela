@@ -55,7 +55,8 @@ class EspecialistaController extends Controller
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:especialistas,email',
             'telefono' => 'required|string|max:15',
-            'cedula' => 'nullable|string|max:20',
+           
+            'cedula' => 'required|string|max:9',
             'fecha_nacimiento' => 'required|date',
             'especialidad' => 'required|string|max:255',
             'nota' => 'nullable|string',

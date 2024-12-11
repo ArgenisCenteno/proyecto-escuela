@@ -15,5 +15,6 @@
     @stack('page_scripts')
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head> <!--end::Head--> <!--begin::Body-->

@@ -1698,3 +1698,27 @@ th{
     background-color: #007999 !important;
     color: black !important;
 }
+
+
+.app-main{
+    position: relative;
+    background-image: url("../iconos/back.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+i{
+    font-size: 20px  !important;
+    color: white;
+    padding: 1px;
+    margin-right: 10px !important;
+}
+label {
+    font-weight: bold;
+}
+
+.container-fluid h3{
+    font-weight: 400;
+}

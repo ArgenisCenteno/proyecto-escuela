@@ -6,7 +6,7 @@
         <div class="container-fluid"> <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Bienvenido, {{Auth::user()->name}}</h3>
+                    <h3 class="mb-3 mt-3 text-blck">Bienvenido, {{Auth::user()->name}}</h3>
                 </div>
                
             </div> <!--end::Row-->
