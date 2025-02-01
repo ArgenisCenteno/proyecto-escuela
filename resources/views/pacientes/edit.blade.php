@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-md-6 col-6">
 
-                                <h3 class="p-2 bold">Editar Alumno</h3>
+                                <h3 class="p-2 bold">Editar Estudiante</h3>
 
 
                             </div>
@@ -106,7 +106,7 @@
             }
 
             // Validation for age and input content
-            if (edad > 1) {
+            if (edad >= 0) {
                 $(this).removeClass('is-invalid');
                 $(this).addClass('is-valid');
                 $(this).next('.invalid-feedback').text('');

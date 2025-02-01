@@ -100,7 +100,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // Validar los datos del formulario
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
@@ -111,6 +111,10 @@ class UserController extends Controller
             'role' => 'required|string|exists:roles,name',
             'status' => 'required|string|in:Activo,Inactivo',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         // Crear el usuario
         $user = User::create([

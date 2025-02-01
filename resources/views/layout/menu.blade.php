@@ -3,7 +3,7 @@
     <div class="sidebar-brand" style="border: none"> 
         <!--begin::Brand Link--> 
         <a href="{{ route('home') }}" class="brand-link">
-            <span class="brand-text fw-light">Escuela</span> 
+            <span class="brand-text fw-light">Inicio</span> 
         </a> 
     </div>
     <!--end::Sidebar Brand--> 
@@ -41,12 +41,7 @@
                             <span class="nav-text text-white">Docentes</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('tratamientos.index') }}" class="nav-link">
-                            <span class="nav-icon"><i class="fas fa-stethoscope"></i></span>
-                            <span class="nav-text text-white">Terapias</span>
-                        </a>
-                    </li>
+                    
                 @endif
 
                 @if(auth()->user()->hasRole('Administrador') || auth()->user()->hasRole('Administrativo'))
@@ -59,12 +54,7 @@
                 @endif
 
                 @if(auth()->user()->hasRole('Administrador'))
-                    <li class="nav-item">
-                        <a href="{{ route('pacienteTratamientos.index') }}" class="nav-link">
-                            <span class="nav-icon"><i class="fas fa-notes-medical"></i></span>
-                            <span class="nav-text text-white">Categorías de Terapias</span>
-                        </a>
-                    </li>
+                   
                 @endif
                 @if(auth()->user()->hasRole('Administrador') || auth()->user()->hasRole('Director') )
                     <li class="nav-item">

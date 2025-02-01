@@ -120,7 +120,7 @@
 
         $('#telefono').on('input', function () {
             const telefono = $(this).val();
-            const regex = /^(0412|0414|0426|0416)[0-9]{7}$/;
+            const regex = /^(0412|0414|0424|0426|0416)[0-9]{7}$/;
 
             if (telefono.length > 11) {
                 // Mensaje de error si tiene más de 11 dígitos

@@ -75,7 +75,8 @@ class PacienteController extends Controller
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'fecha_nacimiento' => 'required|date|before:today', // Ensure the date is before today
-          
+            'genero' => 'required|string|max:255',
+            'peso' => 'required|string|max:255',
             'estatura' => 'required|numeric|min:0',
             'tipo_sangre' => 'required|string',
             'lateralidad' => 'required|string',

@@ -14,14 +14,14 @@
 
         <!-- Hora Field -->
         <div class="col-md-6">
-            <div class="form-group">
-                <label for="hora">Hora</label>
-                <input type="time" name="hora" id="hora" class="form-control @error('hora') is-invalid @enderror" required>
-                @error('hora')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
+    <div class="form-group">
+        <label for="hora">Hora</label>
+        <input type="text" name="hora" id="hora" class="form-control @error('hora') is-invalid @enderror" required>
+        @error('hora')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
     </div>
 
     <div class="row">
@@ -89,3 +89,13 @@
 
     <button type="submit" class="btn btn-primary">Registrar Cita</button>
 </form>
+<link rel="stylesheet" href="{{asset('css/flatpickr.min.css')}}">
+<script src="{{asset('js/flatpickr.min.js')}}"></script>
+<script>
+    flatpickr("#hora", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "h:i K", // Formato de 12 horas con AM/PM
+        time_24hr: false
+    });
+</script>

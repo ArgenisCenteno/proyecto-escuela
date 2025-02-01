@@ -30,13 +30,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 mb-3">
-            <label for="cedula">Cédula:</label>
-            <input type="text" id="cedula" name="cedula" class="form-control">
-            @error('cedula')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+       
     </div>
 
     <div class="row">
@@ -113,7 +107,7 @@
 
     <div class="row">
     <div class="col-md-6 mb-3" id="nota-container" style="display: none;">
-    <label for="nota">Nota:</label>
+    <label for="nota">Observaciones:</label>
     <textarea id="nota" name="nota" class="form-control"></textarea>
     @error('nota')
         <div class="invalid-feedback">{{ $message }}</div>
@@ -147,7 +141,7 @@
         </div>
 
         <div class="col-md-6 mb-3">
-            <label for="grado">Grado:</label>
+            <label for="grado">Grado / Nivel:</label>
             <input type="text" id="grado" name="grado" class="form-control" required>
             @error('grado')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -155,6 +149,6 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Registrar Paciente</button>
+    <button type="submit" class="btn btn-primary">Registrar Estudiante</button>
 
 </form>

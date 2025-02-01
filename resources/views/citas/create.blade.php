@@ -46,37 +46,45 @@
 <script>
     $(document).ready(function () {
 
-        var today = new Date().toISOString().split('T')[0];
-        $('#fecha').attr('min', today);
 
-        // Validación de la fecha en tiempo real
-        $('#fecha').on('input', function () {
+
+        $('#fecha').on('change', function () {
             var selectedDate = $(this).val();
+            if (!selectedDate) return; // Si no hay fecha seleccionada, no hacer nada
+
             var currentDate = new Date().toISOString().split('T')[0];
-            var dayOfWeek = new Date(selectedDate).getDay();
+            var dayOfWeek = new Date(selectedDate + 'T00:00:00').getDay(); // Asegura formato correcto
 
             if (selectedDate < currentDate) {
-                // Fecha inválida
+                // Fecha inválida: menor a hoy
                 $(this).removeClass('is-valid').addClass('is-invalid');
-                if (!$(this).next('.invalid-feedback').length) {
-                    $(this).after('<div class="invalid-feedback">La fecha no puede ser menor a hoy.</div>');
-                } else {
-                    $(this).next('.invalid-feedback').text('La fecha no puede ser menor a hoy.');
-                }
-            } else if (dayOfWeek === 5 || dayOfWeek === 6) {
-                // Si es sábado (6) o domingo (0)
+                showErrorMessage($(this), 'La fecha no puede ser menor a hoy.');
+            } else if (dayOfWeek === 0 || dayOfWeek === 6) {
+                // Fecha inválida: sábado (6) o domingo (0)
                 $(this).removeClass('is-valid').addClass('is-invalid');
-                if (!$(this).next('.invalid-feedback').length) {
-                    $(this).after('<div class="invalid-feedback">No se puede pedir cita para un sábado o un domingo.</div>');
-                } else {
-                    $(this).next('.invalid-feedback').text('No se puede pedir cita para un sábado o un domingo.');
-                }
+                showErrorMessage($(this), 'No se puede pedir cita para un sábado o un domingo.');
             } else {
                 // Fecha válida
                 $(this).removeClass('is-invalid').addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
+                removeErrorMessage($(this));
             }
         });
+
+        // Función para mostrar mensaje de error
+        function showErrorMessage(element, message) {
+            if (!element.next('.invalid-feedback').length) {
+                element.after('<div class="invalid-feedback">' + message + '</div>');
+            } else {
+                element.next('.invalid-feedback').text(message);
+            }
+        }
+
+        // Función para remover mensaje de error
+        function removeErrorMessage(element) {
+            element.next('.invalid-feedback').remove();
+        }
+
+
 
         $('#hora').on('input', function () {
             var selectedTime = $(this).val();

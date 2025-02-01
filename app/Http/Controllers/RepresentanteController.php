@@ -76,7 +76,7 @@ class RepresentanteController extends Controller
             'email' => 'required|email|unique:representantes,email',
             'telefono' => 'nullable|string|max:11',
             'profesion' => 'nullable|string|max:255',
-            'residencia' => 'nullable|string|max:255',
+            'residencia' => 'required|string|max:255', 
               // Relacionar con un usuario existente
         ]);
     

@@ -77,7 +77,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="profesion">Profesión:</label>
+                <label for="profesion">Profesión / Ocupación:</label>
                 <input type="text" class="form-control @error('profesion') is-invalid @enderror" id="profesion"
                        name="profesion" value="{{ old('profesion', $representante->profesion ?? '') }}">
                 @error('profesion')

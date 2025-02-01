@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Especialista;
 use Illuminate\Http\Request;
+use Validator;
 use Yajra\DataTables\DataTables;
 use Alert;
 class EspecialistaController extends Controller
@@ -49,20 +50,24 @@ class EspecialistaController extends Controller
      */
     public function store(Request $request)
     {
+      
         // Validate the request
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:especialistas,email',
-            'telefono' => 'required|string|max:15',
+            'telefono' => 'required|string|max:15|unique:especialistas,telefono',
            
-            'cedula' => 'required|string|max:9',
+            'cedula' => 'required|string|max:9|unique:especialistas,cedula',
             'fecha_nacimiento' => 'required|date',
             'especialidad' => 'required|string|max:255',
             'nota' => 'nullable|string',
             'residencia' => 'nullable|string|max:255',
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         // Create the specialist
         Especialista::create($request->all());
 

@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre"
-                    required>
+                    value="{{ old('nombre') }}" required>
                 @error('nombre')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
                 <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido"
-                    name="apellido" required>
+                    name="apellido" value="{{ old('apellido') }}" required>
                 @error('apellido')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
                 <input type="date" class="form-control @error('fecha_nacimiento') is-invalid @enderror"
-                    id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required>
                 @error('fecha_nacimiento')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <label for="cedula">Cédula:</label>
                 <input type="text" class="form-control @error('cedula') is-invalid @enderror" id="cedula" name="cedula"
-                    required>
+                    value="{{ old('cedula') }}" required>
                 @error('cedula')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                    required>
+                    value="{{ old('email') }}" required>
                 @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -65,7 +65,7 @@
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
                 <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono"
-                    name="telefono">
+                    name="telefono" value="{{ old('telefono') }}">
                 @error('telefono')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -76,9 +76,9 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="profesion">Profesión:</label>
+                <label for="profesion">Profesión/ Ocupación:</label>
                 <input type="text" class="form-control @error('profesion') is-invalid @enderror" id="profesion"
-                    name="profesion">
+                    name="profesion" value="{{ old('profesion') }}">
                 @error('profesion')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -89,7 +89,7 @@
             <div class="form-group">
                 <label for="residencia">Residencia:</label>
                 <input type="text" class="form-control @error('residencia') is-invalid @enderror" id="residencia"
-                    name="residencia">
+                    name="residencia" value="{{ old('residencia') }}">
                 @error('residencia')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
