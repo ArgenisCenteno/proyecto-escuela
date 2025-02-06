@@ -81,6 +81,14 @@
 
             @endif
         </div>
+        <div class="col-6 d-inline-flex">
+            <p style="font-size: 12px;" class="mb-0"><strong>Cédula del Representante:</strong></p>
+            @if ($paciente->representante)
+                <p style="font-size: 12px;">
+                    {{ strtoupper($paciente->representante->cedula) }}</p>
+
+            @endif
+        </div>
 
         <div class="col-4 d-inline-flex">
             <p style="font-size: 12px;" class="mb-0"><strong>FECHA DE INSCRIPCIÓN:</strong></p>
@@ -119,7 +127,7 @@
                     <tr>
                         <th class="text-center" scope="col">CITA</th>
                         <th class="text-center" scope="col">ESTADO</th>
-                        <th class="text-center" scope="col">ESPECIALISTA</th>
+                        <th class="text-center" scope="col">DOCENTE</th>
                         <th class="text-center" scope="col">ASISTENCIA</th>
                         <th class="text-center" scope="col">FECHA</th>
                     </tr>
@@ -139,42 +147,9 @@
             </table>
         </div>
         <div class="text-center container-fluid">
-        <h5><strong>TRATAMIENTOS</strong></h5>
-    </div>
-        <div class="container">
         
-            <table class="table" style="font-size: 12px ">
-                <thead class="text-white" style="background-color: #1f3b73 !important">
-                    <tr><th class="text-center" scope="col">TRATAMIENTO</th>
-                        <th class="text-center" scope="col">ESTADO</th>
-                        <th class="text-center" scope="col">ESPECIALISTA</th>
-                        <th class="text-center" scope="col">FECHA DE REGISTRO</th>
-                        <th class="text-center" scope="col">FECHA INICIO</th>
-                        <th class="text-center" scope="col">FECHA FIN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tratamientos as $cita)
-                        <tr>
-                        <td class="text-center">{{ $cita->id }}</td>
-                            <td class="text-center">{{ strtoupper($cita->estatus) }}</td>
-                            <td class="text-center">
-                               @if($cita->especialista)
-                               {{ strtoupper($cita->cita->especialista->nombre . ' ' . $cita->cita->especialista->apellido) }}</td>
-
-                               @else
-                               {{ strtoupper('S/D') }}</td>
-
-                            @endif
-                            <td class="text-center">{{ $cita->created_at }}</td>
-                            <td class="text-center">{{ $cita->fecha_inicio }}</td>
-                            <td class="text-center">{{ $cita->fecha_fin }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
+    </div>
+        
 
 
 </body>

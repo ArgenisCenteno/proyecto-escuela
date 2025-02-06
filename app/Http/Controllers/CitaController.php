@@ -8,10 +8,11 @@ use App\Models\Cita;
 use App\Models\Especialista;
 use App\Models\NotaMedica;
 use App\Models\Paciente;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
-use Alert;
+use Alert; 
 class CitaController extends Controller
 {
     /**
@@ -25,7 +26,8 @@ class CitaController extends Controller
             return DataTables::of($tramites)
                 ->addColumn('actions', function ($row) {
                     return '<a href="' . route('citas.edit', [$row->id]) . '" class="btn btn-info"><span>Editar</span></a>
-                        <form action="' . route('citas.destroy', [$row->id]) . '" method="POST" style="display:inline;" onsubmit="return confirm(\'¿Está seguro de que desea eliminar este registro?\');">
+                         <a href="' . route('pacientes.pdf', [$row->paciente_id]) . '" class="btn btn-success" target="_blank"><span> PDF</span></a>
+                    <form action="' . route('citas.destroy', [$row->id]) . '" method="POST" style="display:inline;" onsubmit="return confirm(\'¿Está seguro de que desea eliminar este registro?\');">
                             ' . csrf_field() . method_field('DELETE') . '
                             <button type="submit" class="btn btn-danger btn-delete"><span>Eliminar</span></button>
                         </form>';
@@ -106,58 +108,65 @@ class CitaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+   
+
     public function store(Request $request)
     {
         // Validation rules
         $request->validate([
+            'hora' => 'required',
             'fecha' => 'required|date|after_or_equal:today',
-            'hora' => 'required|date_format:H:i',
             'especialista_id' => 'required|exists:especialistas,id',
             'paciente_id' => 'required|exists:pacientes,id',
-            'representante_id' => 'nullable|exists:representantes,id',
+            'representante_id' => 'nullable|exists:representantes,id', 
             'estatus' => 'required|in:Pendiente,Confirmado,Cancelado',
             'nota' => 'nullable|string|max:255',
         ]);
-
+    
+        // Convertir la hora en formato 24 horas H:i
+        $hora = Carbon::createFromFormat('h:i A', $request->hora)->format('H:i');
+    
+        // Verificar si ya existe un conflicto en la cita
         $conflicto = Cita::where('especialista_id', $request->especialista_id)
             ->where('fecha', $request->fecha)
-            ->where('hora', $request->hora)
+            ->where('hora', $hora)
             ->exists();
-
+    
         if ($conflicto) {
             Alert::error('¡Error!', 'El especialista seleccionado ya tiene cita en esta fecha y hora.')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
-
             return redirect()->back();
         }
-
+    
+        // Verificar existencia del paciente
         $paciente = Paciente::find($request->paciente_id);
-
         if (!$paciente) {
             Alert::error('¡Error!', 'Paciente no registrado.')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
-
             return redirect()->back();
         }
+    
+        // Verificar existencia del especialista
         $especialista = Especialista::find($request->especialista_id);
         if (!$especialista) {
-            Alert::error('¡Error!', 'Especilista no registrado.')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
-
+            Alert::error('¡Error!', 'Especialista no registrado.')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
             return redirect()->back();
         }
-        // Create the new appointment
+    
+        // Crear la nueva cita
         Cita::create([
             'fecha' => $request->fecha,
-            'hora' => $request->hora,
+            'hora' => $hora,  // Hora en formato 24 horas
             'especialista_id' => $especialista->id,
             'paciente_id' => $paciente->id,
             'representante_id' => $paciente->representante->id,
             'estatus' => $request->estatus,
             'nota' => $request->nota,
         ]);
+    
         Alert::success('¡Éxito!', 'Registro hecho correctamente')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
-
+    
         return redirect()->route('citas.index')->with('success', 'Cita registrada con éxito.');
     }
-
+    
 
     /**
      * Display the specified resource.

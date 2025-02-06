@@ -36,7 +36,12 @@
                 @enderror
             </div>
         </div>
-
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="text" class="form-control" id="edad" name="edad" readonly>
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="cedula">Cédula:</label>
@@ -47,9 +52,6 @@
                 @enderror
             </div>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -60,7 +62,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="col-md-6">
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
@@ -71,9 +72,7 @@
                 @enderror
             </div>
         </div>
-    </div>
 
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="profesion">Profesión/ Ocupación:</label>
@@ -84,17 +83,22 @@
                 @enderror
             </div>
         </div>
+   
+ 
 
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="residencia">Residencia:</label>
-                <input type="text" class="form-control @error('residencia') is-invalid @enderror" id="residencia"
-                    name="residencia" value="{{ old('residencia') }}">
-                @error('residencia')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="residencia">Residencia:</label>
+            <input type="text" class="form-control @error('residencia') is-invalid @enderror" id="residencia"
+                name="residencia" value="{{ old('residencia') }}">
+            @error('residencia')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
+    </div>
+
     </div>
 
     <button type="submit" class="btn btn-primary">Crear Representante</button>

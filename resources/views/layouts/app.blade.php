@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    @include('layout.head')
     <title>{{ config('app.name', 'UPTNMLS') }}</title>
 
     <!-- Fonts -->
@@ -41,8 +41,15 @@
 
         <main  >
             @yield('content')
+            @stack('third_party_scripts')
+            @stack('page_scripts')
         </main>
     </div>
 </body>
-
+@yield('js')
+@include('layout.script')
+@include('sweetalert::alert')
+@include('layout.datatables_css')
+@include('layout.datatables_js')
+<script src="{{asset('js/sweetalert2.js')}}"></script>
 </html>

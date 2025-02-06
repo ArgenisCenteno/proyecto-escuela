@@ -28,7 +28,7 @@ class PacienteController extends Controller
                         ' . csrf_field() . method_field('DELETE') . '
                         <button type="submit" class="btn btn-danger btn-delete"><span>Eliminar</span></button>
                     </form>
-                    <a href="' . route('pacientes.pdf', [$row->id]) . '" class="btn btn-success" target="_blank"><span> PDF</span></a>
+                  
                      <a href="' . route('pacientes.pdfCedula', [$row->id]) . '" class="btn btn-warning" target="_blank"><span> Cédula</span></a>
                     ';
             })
@@ -39,7 +39,7 @@ class PacienteController extends Controller
                 })
                 ->editColumn('discapacidad', function ($row) {
                     return $row->posee_discapacidad
-                        ? '<span class="badge badge-success">Sí</span>' // For value 1
+                        ?  $row->nota // For value 1
                         : '<span class="badge badge-danger">No</span>';  // For value 0 or null
                 })
 

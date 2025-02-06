@@ -8,6 +8,7 @@
                 <th>Cédula</th>
                 <th>Telefono</th>
                 <th>Dirección</th>
+                <th>Fecha</th>
                 <th>Opciones</th>
             </tr>
         </thead>
@@ -55,7 +56,10 @@
                     data: 'telefono',
                     name: 'telefono',
                 },
-
+                {
+                    data: 'residencia',
+                    name: 'residencia',
+                },
                 {
                     data: 'fecha',
                     name: 'fecha',

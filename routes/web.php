@@ -7,6 +7,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PacienteTratamientoController;
 use App\Http\Controllers\RepresentanteController;
 use App\Http\Controllers\TratamientoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,3 +46,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/login/user', [UserController::class, 'loginUser'])->name('user.login');

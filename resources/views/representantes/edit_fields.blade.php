@@ -37,7 +37,16 @@
                 @enderror
             </div>
         </div>
-
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="residencia">Edad:</label>
+                <input type="text" readonly class="form-control @error('edad') is-invalid @enderror" id="edad"
+                       name="edad" value="{{ old('residencia', $edad ?? '') }}">
+                @error('edad')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="cedula">Cédula:</label>
@@ -48,9 +57,6 @@
                 @enderror
             </div>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -72,9 +78,7 @@
                 @enderror
             </div>
         </div>
-    </div>
 
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="profesion">Profesión / Ocupación:</label>
@@ -96,6 +100,13 @@
                 @enderror
             </div>
         </div>
+         
+    </div>
+
+    
+
+    <div class="row">
+      
     </div>
 
     <button type="submit" class="btn btn-primary">Crear Representante</button>

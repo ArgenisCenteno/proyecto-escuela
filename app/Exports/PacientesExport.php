@@ -16,29 +16,33 @@ class PacientesExport implements FromCollection, WithHeadings, ShouldAutoSize
             ->map(function ($paciente) {
                 return [
                     'ID' => $paciente->id,
-                    'Nombre Completo' => $paciente->nombre . ' ' . $paciente->apellido,
-                    'Fecha de Nacimiento' => $paciente->fecha_nacimiento,
-                    'Cédula' => $paciente->cedula,
-                    'Estatura' => $paciente->estatura,
-                    'Tipo de Sangre' => $paciente->tipo_sangre,
-                    'Lateralidad' => $paciente->lateralidad,
-                    'Posee Discapacidad' => $paciente->posee_discapacidad ? 'Sí' : 'No',
-                    'Nota' => $paciente->nota,
-                    'Colegio' => $paciente->colegio,
-                    'Grado' => $paciente->grado,
+                    'Niño' => $paciente->nombre . ' ' . $paciente->apellido,
+                    'Genero' => $paciente->genero,
+                    'Discapacidad' => $paciente->nota,
+                    
                     'Representante' => optional($paciente->representante)->nombre . ' ' . optional($paciente->representante)->apellido,
                 ];
             });
     }
-
     public function headings(): array
+    {
+        return [
+            'ID',
+            'Niño',
+            'Genero',
+            'Discapacidad',
+            'Representante', 
+        ];
+    }
+
+   /* public function headings(): array
     {
         return [
             'ID',
             'Nombre Completo',
             'Fecha de Nacimiento',
             'Cédula',
-            'Estatura',
+            'Estatura', 
             'Tipo de Sangre',
             'Lateralidad',
             'Posee Discapacidad',
@@ -47,5 +51,5 @@ class PacientesExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Grado',
             'Representante',
         ];
-    }
+    } */
 }

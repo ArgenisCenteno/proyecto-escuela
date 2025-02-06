@@ -29,6 +29,10 @@ class RepresentanteController extends Controller
                 ->editColumn('fecha', function ($row) {
                     return $row->created_at->format('Y-m-d');
                 })
+                ->editColumn('fecha_nacimiento', function ($row) { 
+                    return \Carbon\Carbon::parse($row->fecha_nacimiento)->age;
+                })
+                
                 ->editColumn('usuario', function ($row) {
                     return $row->user->name ?? '';
                 })
@@ -122,7 +126,8 @@ class RepresentanteController extends Controller
             return redirect()->route('representantes.index');
         }
 
-        return view('representantes.edit')->with('representante', $representante);
+       $edad = \Carbon\Carbon::parse($representante->fecha_nacimiento)->age ?? 'S/D';
+        return view('representantes.edit')->with('edad', $edad)->with('representante', $representante);
     }
 
     /**

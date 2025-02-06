@@ -171,7 +171,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8',
             'dni' => 'required|string|max:20',
             'sector' => 'nullable|string|max:100',
             'calle' => 'nullable|string|max:100',
@@ -241,5 +241,37 @@ class UserController extends Controller
     }
     
 
-   
+    public function loginUser(Request $request)
+    {
+        // Validar los campos del formulario de login
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+    
+        // Intentar autenticar al usuario
+        $user = User::where('email', $request->email)->first();
+    
+        // Verificar si el usuario existe y si su estado es 'Activo'
+        if ($user) {
+            if ($user->status == 'Inactivo') {
+                // Si el estado no es 'Activo', no dejar iniciar sesión y redirigir con mensaje
+                return back()->withErrors(['email' => 'Tu cuenta no está activa.']);
+            }
+    
+            // Verificar la contraseña
+            if (Hash::check($request->password, $user->password)) {
+                // Si la contraseña es correcta, iniciar sesión
+                Auth::login($user);
+                return redirect()->route('home');
+            } else {
+                // Si la contraseña no es correcta, mostrar error
+                return back()->withErrors(['password' => 'Credenciales incorrectas.']);
+            }
+        }
+    
+        // Si el usuario no existe, mostrar error
+        return back()->withErrors(['email' => 'El usuario no existe.']);
+    }
+    
 }

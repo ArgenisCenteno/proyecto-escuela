@@ -7,7 +7,7 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
 
       <div class="col-md-9 col-lg-6 col-xl-4 offset-xl-1 ">
-        <form method="POST" action="{{ route('login') }} ">
+        <form method="POST" action="{{ route('user.login') }} ">
           @csrf
 
 

@@ -7,7 +7,7 @@
                 <th>Apellido</th>
                 <th>Email</th>
                 <th>Cedula</th>
-                <th>Fecha de registro</th>
+                <th>Edad</th>
                 <th>Opciones</th>
             </tr>
         </thead>
@@ -57,8 +57,8 @@
                 },
 
                 {
-                    data: 'fecha',
-                    name: 'fecha',
+                    data: 'fecha_nacimiento',
+                    name: 'fecha_nacimiento',
                 },
 
 

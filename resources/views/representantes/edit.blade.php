@@ -24,7 +24,7 @@
                         </div>
                         <div class="card-body">
 
-                           @include('representantes.edit_fields')
+                            @include('representantes.edit_fields')
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,12 @@
 <script>
     $(document).ready(function () {
         $('#telefono').on('input', function () {
-            const telefono = $(this).val();
-            const regex = /^(0412|0414|0426|0416)[0-9]{7}$/;
+            let telefono = $(this).val();
+            if (telefono.length > 11) {
+                telefono = telefono.slice(0, 11); // Limita la longitud a 9 caracteres
+            }
+            $(this).val(telefono); // Establece el valor limitado
+            const regex = /^(0412|0424|0414|0426|0416)[0-9]{7}$/;
 
             if (telefono.length > 11) {
                 // Mensaje de error si tiene más de 11 dígitos
@@ -91,19 +95,53 @@
         })
 
         $('#cedula').on('input', function () {
-            const cedula = $(this).val();
-            const regex = /^\d{7,8}$/;
+            let cedula = $(this).val().replace(/\D/g, ''); // Elimina cualquier caracter no numérico
+            if (cedula.length > 9) {
+                cedula = cedula.slice(0, 9); // Limita la longitud a 9 caracteres
+            }
+            $(this).val(cedula); // Establece el valor limitado
 
+            const regex = /^\d{7,9}$/; // Asegura que sean entre 7 y 9 números
             if (regex.test(cedula)) {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
+                $(this).removeClass('is-invalid').addClass('is-valid');
                 $(this).next('.invalid-feedback').text('');
             } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Los campos de nombres no pueden tener números.');
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                $(this).next('.invalid-feedback').text('La cédula debe tener entre 7 y 9 números.');
             }
-        })
+        });
+        $('#fecha_nacimiento').on('input', function () {
+            const fecha = $(this).val(); // Obtener el valor del input
+            if (!fecha) return; // Evita errores si el input está vacío
+
+            const ahora = new Date();
+
+            // Separar la fecha (YYYY-MM-DD)
+            const [anio, mes, dia] = fecha.split('-').map(Number);
+            const fechaNacimiento = new Date(anio, mes - 1, dia); // Crear objeto Date
+
+            // Calcular edad
+            let edad = ahora.getFullYear() - anio;
+            const mesActual = ahora.getMonth() + 1; // Los meses son base 0 en JS
+            const diaActual = ahora.getDate();
+
+            // Ajustar la edad si aún no ha cumplido años este año
+            if (mesActual < mes || (mesActual === mes && diaActual < dia)) {
+                edad--;
+            }
+
+            // Establecer la edad en el input correspondiente
+            $('#edad').val(edad);
+
+            // Validación de la edad mínima
+            if (edad >= 12) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+                $(this).next('.invalid-feedback').text('');
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                $(this).next('.invalid-feedback').text('El representante debe tener más de 11 años.');
+            }
+        });
     });
 </script>
 

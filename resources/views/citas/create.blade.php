@@ -87,15 +87,55 @@
 
 
         $('#hora').on('input', function () {
-            var selectedTime = $(this).val();
-            if (selectedTime < "08:00" || selectedTime > "14:00") {
-                $(this).removeClass('is-valid').addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('La hora debe estar entre las 8:00 a.m. y las 2:00 p.m.');
-            } else {
-                $(this).removeClass('is-invalid').addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            }
-        });
+    var selectedTime = $(this).val().trim(); // Obtener y limpiar el input
+    var regex = /^(0?[1-9]|1[0-2]):([0-5][0-9])\s?(AM|PM)$/i;
+
+
+    console.log(selectedTime)
+    // Verificar si el formato es correcto
+    if (!regex.test(selectedTime)) {
+        $(this).removeClass('is-valid').addClass('is-invalid');
+        $(this).next('.invalid-feedback').text('Formato inválido. Use hh:mm AM/PM.');
+        return;
+    }
+
+    // Extraer hora, minutos y AM/PM
+    let [, hour, minute, period] = selectedTime.match(regex);
+    hour = parseInt(hour);
+    minute = parseInt(minute);
+
+    // Imprimir valores para depuración
+    console.log(`Hora: ${hour}, Minutos: ${minute}, Periodo: ${period}`);
+
+    // Convertir a formato 24 horas para la comparación
+    if (period.toUpperCase() === 'PM' && hour !== 12) {
+        hour += 12; // Para convertir 1 PM en 13, 2 PM en 14, etc.
+    } else if (period.toUpperCase() === 'AM' && hour === 12) {
+        hour = 0; // 12 AM se convierte en 00
+    }
+
+    // Imprimir la hora convertida para ver si la conversión fue correcta
+    console.log(`Hora convertida a 24h: ${hour}:${minute}`);
+
+    // Calcular los minutos totales
+    let totalMinutes = hour * 60 + minute;
+    console.log(`Total en minutos: ${totalMinutes}`);
+
+    // Definir los rangos de horas en minutos
+    let startTime = 7 * 60;  // 07:00 AM en minutos (420)
+    let endTime = 13 * 60;   // 01:00 PM en minutos (780)
+
+    // Validar si la hora está en el rango permitido
+    if (totalMinutes >= startTime && totalMinutes <= endTime) {
+        $(this).removeClass('is-invalid').addClass('is-valid');
+        $(this).next('.invalid-feedback').text('');
+    } else {
+        $(this).removeClass('is-valid').addClass('is-invalid');
+        $(this).next('.invalid-feedback').text('La hora debe estar entre las 07:00 AM y la 01:00 PM.');
+    }
+});
+
+
 
         $('#especialista_id').select2({
             placeholder: "Seleccione un Especialista",
