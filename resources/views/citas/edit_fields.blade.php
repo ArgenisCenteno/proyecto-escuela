@@ -45,12 +45,12 @@
         <option value="">Seleccione una opción</option>
         <option value="Tarde" {{ isset($asistencia->estado) && $asistencia->estado === 'Tarde' ? 'selected' : '' }}>Llegó tarde</option>
         <option value="Asistió" {{ isset($asistencia->estado) && $asistencia->estado === 'Asistió' ? 'selected' : '' }}>Asistió</option>
-        <option value="No asistió" {{ isset($asistencia->estado) && $asistencia->estado === 'No asistió' ? 'selected' : '' }}>No asistió</option>
+        <option value="No Asistió" {{ isset($asistencia->estado) && $asistencia->estado === 'No Asistió' ? 'selected' : '' }}>No asistió</option>
     </select>
     @error('asistencia')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
-</div>
+</div> 
 
     </div>
 

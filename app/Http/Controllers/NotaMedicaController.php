@@ -77,11 +77,7 @@ class NotaMedicaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'cita_id' => 'required|integer',
-            'especialista_id' => 'required|integer',
-            'nota' => 'required|string'
-        ]);
+        
 
         $notaMedica = NotaMedica::findOrFail($id);
         $notaMedica->update($request->all());

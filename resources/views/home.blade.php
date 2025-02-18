@@ -18,7 +18,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 1-->
                     <div class="small-box bg-primary-app">
                         <div class="inner">
-                            <h3>{{$tramites}}</h3>
+                            <h3>{{$pacientes}}</h3>
                             <p>Estudiantes</p>
                         </div> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
                             aria-hidden="true" class="small-box-icon">
@@ -31,7 +31,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 2-->
                     <div class="small-box bg-success-app">
                         <div class="inner">
-                            <h3>{{$productos}}<sup class="fs-5"></sup></h3>
+                            <h3>{{$representantes}}<sup class="fs-5"></sup></h3>
                             <p>Representantes</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -44,7 +44,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 3-->
                     <div class="small-box bg-danger-app">
                         <div class="inner">
-                            <h3>{{$solicitudes}}</h3>
+                            <h3>{{$especialistas}}</h3>
                             <p>Docentes</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -57,7 +57,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 4-->
                     <div class="small-box bg-warning-app">
                         <div class="inner">
-                            <h3>{{$asignaciones}}</h3>
+                            <h3>{{$citas}}</h3>
                             <p>Citas</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -74,7 +74,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 4-->
                     <div class="small-box bg-sky-app">
                         <div class="inner">
-                            <h3>{{$requerimientos}}</h3>
+                            <h3>{{$citas2}}</h3>
                             <p>Citas pendientes</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -90,7 +90,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 4-->
                     <div class="small-box text-bg-dark">
                         <div class="inner">
-                            <h3>{{$bajoStock}}</h3>
+                            <h3>{{$asistencias}}</h3>
                             <p>Asistencias</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -106,7 +106,7 @@
                 <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 4-->
                     <div class="small-box text-bg-success">
                         <div class="inner">
-                            <h3>{{$proveedores}}</h3>
+                            <h3>{{$notas}}</h3>
                             <p>Observaciones</p>
                         </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

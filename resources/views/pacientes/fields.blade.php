@@ -7,6 +7,7 @@
         <div class="col-md-6 mb-3">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" class="form-control" required>
+            <div class="invalid-feedback"></div>
             @error('nombre')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -15,6 +16,7 @@
         <div class="col-md-6 mb-3">
             <label for="apellido">Apellido:</label>
             <input type="text" id="apellido" name="apellido" class="form-control" required>
+            <div class="invalid-feedback"></div>
             @error('apellido')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -25,6 +27,7 @@
         <div class="col-md-6 mb-3">
             <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
             <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
+            <div class="invalid-feedback"></div>
             @error('fecha_nacimiento')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -36,14 +39,16 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="estatura">Peso (kg):</label>
-            <input type="number" step="any" id="peso" name="peso" class="form-control" required>
-            @error('estatura')
+            <input type="number" step="any" id="peso" name="peso" class="form-control @error('peso') is-invalid @enderror" required>
+            <div class="invalid-feedback"></div>
+            @error('peso')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="col-md-6 mb-3">
             <label for="estatura">Estatura (cm):</label>
             <input type="number" step="any" id="estatura" name="estatura" class="form-control" required>
+            <div class="invalid-feedback"></div>
             @error('estatura')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -149,6 +154,6 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Registrar Estudiante</button>
+    <button type="submit" class="btn btn-primary" id="submit-btn">Registrar Estudiante</button>
 
 </form>

@@ -34,7 +34,7 @@ class CitaController extends Controller
                 })
 
                 ->editColumn('fecha', function ($row) {
-                    return $row->created_at->format('Y-m-d');
+                    return $row->fecha;
                 })
                 ->editColumn('fecha_creacion', function ($row) {
                     return $row->created_at->format('Y-m-d');
@@ -71,21 +71,24 @@ class CitaController extends Controller
                     return $row->representante->nombre . ' ' . $row->representante->apellido;
                 })
                 ->editColumn('asistencia', function ($row) {
-                    if(isset($row->asistencia->estado) ){
-                        switch ($row->asistencia->estado) {
+                  
+                    if(isset($row->asistencia->estado)) {
+                        $estado = trim($row->asistencia->estado); // Elimina posibles espacios en blanco
+                    
+                        switch ($estado) {
                             case 'Tarde':
                                 return '<span class="badge badge-danger">Tarde</span>';
                             case 'Asistió':
                                 return '<span class="badge badge-info">Asistió</span>';
-                            case 'No asistió':
-                                return '<span class="badge badge-success">No asistió</span>';
-                            
+                            case 'No Asistió':
+                                return '<span class="badge badge-warning">No asistió</span>';
                             default:
                                 return '<span class="badge badge-dark">No ha empezado</span>'; // Para manejar valores no esperados
                         }
-                    }else{
+                    } else {
                         return '<span class="badge badge-dark">No ha empezado</span>'; // Para manejar valores no esperados
                     }
+                    
                     
                 })
                 ->rawColumns(['actions', 'estatus', 'asistencia'])
@@ -152,7 +155,7 @@ class CitaController extends Controller
         }
     
         // Crear la nueva cita
-        Cita::create([
+        Cita::create([  
             'fecha' => $request->fecha,
             'hora' => $hora,  // Hora en formato 24 horas
             'especialista_id' => $especialista->id,
@@ -188,6 +191,7 @@ class CitaController extends Controller
         $pacientes = Paciente::get();
         $especialistas = Especialista::get();
 
+        //dd($asistencia);
         
         if (!$cita) {
             Alert::error('¡Error!', 'Registro no encontrado')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
@@ -244,19 +248,23 @@ class CitaController extends Controller
             $nota->nota = $request->nota_medica;
             $nota->save();
         }
-
-        $asistencia = Asistencia::where('cita_id', $cita)->first();
+   
+        $asistencia = Asistencia::where('cita_id', $cita->id)->first();
+       
         if(!$asistencia  && $request->asistencia != ''){
+            
             $nuevo = new Asistencia();
             $nuevo->cita_id = $id;
             $nuevo->estado = $request->asistencia;
             $nuevo->observacion = $request->observacion_asistencia ?? '';
             $nuevo->save();
         }elseif($asistencia && $request->asistencia != ''){
+           
+            $asistencia->observacion = $request->observacion_asistencia ?? '';
+            $asistencia->estado = $request->asistencia;
+            $asistencia->save();
           
-            $nota->observacion = $request->observacion_asistencia ?? '';
-            $nota->estado = $request->asistencia;
-            $nota->save();
+          
         }
 
         Alert::success('¡Exito!', 'Registro actualizado correctamente.')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');

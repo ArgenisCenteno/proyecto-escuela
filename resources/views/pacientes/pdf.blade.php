@@ -13,7 +13,7 @@
     <style>
         .page-break {
             page-break-after:
-                'auto' 
+                'auto'
             ;
         }
     </style>
@@ -21,22 +21,27 @@
 
 <body>
 
-    <header class="row">
-        <div class="header-left">
+<header class="bg-white" style=" background-color: white !important;">
+    <table >
+        <thead>
+            <tr>
+                <td style="background-color: white !important;">
+                    <img src="{{public_path('iconos/logo.jpg')}}" alt="Foto" width="100px">
+                </td>
+                <td style="background-color: white !important;" class="text-center">
+                    <h2><strong class="">CENTRO DE DESARROLLO INFANTIL</strong></h2>
+                    <h3><strong class="">"LUISA CÁCERES DE ARISMENDI"</strong></h3>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                <img src="{{public_path('iconos/ministerio.jpg')}}" alt="Foto" width="100px">
+                </td>
+            </tr>
+        </thead>
+    </table>
+</header>
 
-        </div>
-        <div class="header-center text-center fw-bold">
-            <strong>
-                <p style="margin-top: 0; margin-bottom:0; font-size:0.8rem;">REPÚBLICA BOLÍVARIANA DE VENEZUELA</p>
-                <p style="margin-top: 0; margin-bottom:0; font-size:0.8rem;">ESTADO MONAGAS</p>
-                <p style="margin-top: 0; margin-bottom:0; font-size:0.8rem;">Punta de Mata
-                </p>
-            </strong>
-        </div>
-        <div class="header-right">
-
-        </div>
-    </header>
 
     <div class="fondo-titulo text-center container-fluid">
         <h1><strong>REGISTRO DE ALUMNO</strong></h1>
@@ -77,7 +82,8 @@
             <p style="font-size: 12px;" class="mb-0"><strong>Representante:</strong></p>
             @if ($paciente->representante)
                 <p style="font-size: 12px;">
-                    {{ strtoupper($paciente->representante->nombre . ' ' . $paciente->representante->apellido) }}</p>
+                    {{ strtoupper($paciente->representante->nombre . ' ' . $paciente->representante->apellido) }}
+                </p>
 
             @endif
         </div>
@@ -85,7 +91,8 @@
             <p style="font-size: 12px;" class="mb-0"><strong>Cédula del Representante:</strong></p>
             @if ($paciente->representante)
                 <p style="font-size: 12px;">
-                    {{ strtoupper($paciente->representante->cedula) }}</p>
+                    {{ strtoupper($paciente->representante->cedula) }}
+                </p>
 
             @endif
         </div>
@@ -118,10 +125,10 @@
             </div>
         </div>
         <div class=" text-center container-fluid">
-        <h5><strong>CITAS</strong></h5>
-    </div>
+            <h5><strong>CITAS</strong></h5>
+        </div>
         <div class="container">
-       
+
             <table class="table" style="font-size: 12px">
                 <thead class="text-white" style="background-color: #1f3b73 !important">
                     <tr>
@@ -138,8 +145,9 @@
                             <td class="text-center">{{ $cita->id }}</td>
                             <td class="text-center">{{ strtoupper($cita->estatus) }}</td>
                             <td class="text-center">
-                                {{ strtoupper($cita->especialista->nombre . ' ' . $cita->especialista->apellido) }}</td>
-                            <td class="text-center">{{strtoupper( $cita->asistencia ? 'Asistio' : 'No Asistio' )}}</td>
+                                {{ strtoupper($cita->especialista->nombre . ' ' . $cita->especialista->apellido) }}
+                            </td>
+                            <td class="text-center">{{strtoupper($cita->asistencia ? 'Asistio' : 'No Asistio')}}</td>
                             <td class="text-center">{{ $cita->fecha }}</td>
                         </tr>
                     @endforeach
@@ -147,9 +155,9 @@
             </table>
         </div>
         <div class="text-center container-fluid">
-        
-    </div>
-        
+
+        </div>
+
 
 
 </body>

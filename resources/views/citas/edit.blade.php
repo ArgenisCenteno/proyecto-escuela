@@ -101,4 +101,29 @@
     });
 
 </script>
+<script>
+    $(document).ready(function () {
+     function toggleFieldsBasedOnStatus() {
+        var estatus = $('#estatus').val();  
+
+        // Si el estatus no es 'Pendiente', habilitar los campos
+        if (estatus !== 'Pendiente' && estatus !== 'Cancelada') {
+            $('#asistencia').prop('disabled', false);
+            $('#observacion_asistencia').prop('disabled', false);
+        } else {
+            $('#asistencia').prop('disabled', true);
+            $('#observacion_asistencia').prop('disabled', true);
+        }
+    }
+
+    // Ejecutar la función al cargar la página para el estado actual
+    toggleFieldsBasedOnStatus();
+
+    // Ejecutar la función cada vez que el valor del estatus cambie
+    $('#estatus').on('change', function () {
+        toggleFieldsBasedOnStatus();
+    });
+});
+
+</script>
 @endsection

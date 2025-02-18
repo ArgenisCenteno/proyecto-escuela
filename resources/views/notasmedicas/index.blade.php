@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-md-6 col-6">
 
-                                <h3 class="p-2 bold"> Notas Médicas</h3>
+                                <h3 class="p-2 bold">Observaciones</h3>
 
                                
                             </div>

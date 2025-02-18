@@ -41,96 +41,81 @@
 <script>
     $(document).ready(function () {
        
+       $(document).ready(function () {
+   function validarFormulario() {
+       if ($('.is-invalid').length > 0) {
+           $('#submit-btn').prop('disabled', true);
+       } else {
+           $('#submit-btn').prop('disabled', false);
+       }
+   }
 
-        $('#nombre').on('input', function () {
-            const cedula = $(this).val();
-            const regex = /^[a-zA-Z\s]+$/;
+   function validarCampo(selector, regex, mensaje) {
+       $(selector).on('input', function () {
+           const valor = $(this).val();
+           if (regex.test(valor)) {
+               $(this).removeClass('is-invalid').addClass('is-valid');
+               $(this).next('.invalid-feedback').text('');
+           } else {
+               $(this).addClass('is-invalid').removeClass('is-valid');
+               $(this).next('.invalid-feedback').text(mensaje);
+           }
+           validarFormulario();
+       });
+   }
 
-            if (regex.test(cedula)) {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
+   validarCampo('#nombre', /^[a-zA-Z\s]+$/, 'Los nombres no pueden tener números.');
+   validarCampo('#apellido', /^[a-zA-Z\s]+$/, 'Los apellidos no pueden tener números.');
+   validarCampo('#cedula', /^\d{7,8}$/, 'La cédula debe tener entre 7 y 8 números.');
+
+   $('#fecha_nacimiento').on('input', function () {
+       const fecha = $(this).val();
+       const ahora = new Date();
+       const [anio, mes, dia] = fecha.split('-').map(Number);
+       const fechaNacimiento = new Date(anio, mes - 1, dia);
+
+       let edad = ahora.getFullYear() - anio;
+       const mesActual = ahora.getMonth() + 1;
+       const diaActual = ahora.getDate();
+
+       if (mesActual < mes || (mesActual === mes && diaActual < dia)) {
+           edad--;
+       }
+
+       if (edad >= 1) {
+           $(this).removeClass('is-invalid').addClass('is-valid');
+           $(this).next('.invalid-feedback').text('');
+       } else {
+           $(this).addClass('is-invalid').removeClass('is-valid');
+           $(this).next('.invalid-feedback').text('El paciente debe tener más de 1 año.');
+       }
+       validarFormulario();
+   });
+
+   function validarRango(selector, min, mensaje, max) {
+        $(selector).on('input', function () {
+            const valor = parseFloat($(this).val());
+            if (valor >= min && valor < max) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
                 $(this).next('.invalid-feedback').text('');
             } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Los campos de nombres no pueden tener números.');
+                $(this).addClass('is-invalid').removeClass('is-valid');
+                $(this).next('.invalid-feedback').text(mensaje);
             }
-        })
+            validarFormulario();
+        });
+    }
 
-        $('#apellido').on('input', function () {
-            const cedula = $(this).val();
-            const regex = /^[a-zA-Z\s]+$/;
+    validarRango('#estatura', 40, 'Estatura incongruente.', 250);
+    validarRango('#peso', 3, 'Peso incongruente.', 200);
+   // Deshabilitar el botón al cargar la página
+   validarFormulario();
+});
 
-            if (regex.test(cedula)) {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Los campos de nombres no pueden tener números.');
-            }
-        })
+      
+   });
 
-        $('#cedula').on('input', function () {
-            const cedula = $(this).val();
-            const regex = /^\d{7,8}$/;
-
-            if (regex.test(cedula)) {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Los campos de nombres no pueden tener números.');
-            }
-        })
-
-        $('#fecha_nacimiento').on('input', function () {
-            const fecha = $(this).val(); // Get the input value
-            const ahora = new Date();
-
-            // Split the input date (format assumed: YYYY-MM-DD)
-            const [anio, mes, dia] = fecha.split('-').map(Number);
-            const fechaNacimiento = new Date(anio, mes - 1, dia); // Create a date object
-
-            // Calculate age
-            let edad = ahora.getFullYear() - anio;
-            const mesActual = ahora.getMonth() + 1; // Months are zero-indexed in JavaScript
-            const diaActual = ahora.getDate();
-
-            // Adjust age if the birthday has not occurred yet this year
-            if (mesActual < mes || (mesActual === mes && diaActual < dia)) {
-                edad--;
-            }
-
-            // Validation for age and input content
-            if (edad >= 0) {
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('El representante debe tener más de 1 año.');
-            }
-
-
-        })
-    });
-
-    $('#estatura').on('input', function () {
-        estatura = $(this).val();
-
-        if (estatura > 0 || estatura > 220) {
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Estatura incongruente.');
-            }
-    })
+   
 </script>
 <script>
     $(document).ready(function() {

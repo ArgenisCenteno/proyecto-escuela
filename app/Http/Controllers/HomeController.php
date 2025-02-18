@@ -53,16 +53,16 @@ class HomeController extends Controller
        
     //dd($data2);
         return view('home', [
-            'tramites' => $pacientes,
-            'productos' => $representantes,
-            'solicitudes' => $especialistas,
-            'asignaciones' => $citas,
-            'proveedores' => $citas2,
-            'requerimientos' => $asistencias,
-            'personal' => $notas,
-            'bajoStock' => $tratamientos,
-            'dataProductos' => $data,
-            'tramitesPorMes' => $data2,
+            'pacientes' => $pacientes,
+            'representantes' => $representantes,
+            'especialistas' => $especialistas,
+            'citas' => $citas,
+            'citas2' => $citas2,
+            'asistencias' => $asistencias,
+            'notas' => $notas,
+            'tratamientos' => $tratamientos,
+            'data' => $data,
+            'data2' => $data2,
         ]);
     }
 }

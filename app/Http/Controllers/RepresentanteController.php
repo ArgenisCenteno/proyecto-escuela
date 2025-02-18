@@ -135,16 +135,19 @@ class RepresentanteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Step 2: Find the Representante record by its ID
+        // Buscar el Representante por ID
         $representante = Representante::findOrFail($id);
     
-        // Step 1: Validate the incoming request
-
+        // Validar la solicitud
+        $request->validate([
+            'cedula' => "required|unique:representantes,cedula,$id", 
+            // Agrega aquí otras reglas de validación según los campos de tu modelo
+        ]);
     
-        // Step 3: Update the record with the validated data
+        // Actualizar el registro con los datos validados
         $representante->update($request->all());
     
-        // Step 4: Redirect or return a response
+        // Mensaje de éxito
         Alert::success('¡Éxito!', 'Registro actualizado correctamente')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
     
         return redirect()->route('representantes.index')->with('success', 'Representante actualizado correctamente.');

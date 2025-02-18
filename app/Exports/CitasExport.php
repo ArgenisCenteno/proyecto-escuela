@@ -32,7 +32,6 @@ class CitasExport implements FromCollection, WithHeadings, ShouldAutoSize
                     'Paciente' => optional($cita->paciente)->nombre . ' ' . optional($cita->paciente)->apellido,
                     'Representante' => optional($cita->representante)->nombre . ' ' . optional($cita->representante)->apellido,
                     'Estado' => $cita->estatus,
-                    'Nota' => $cita->nota,
                     'Asistencia' => optional($cita->asistencia)->estado, // Agrega el estado de asistencia
                 ];
             });
@@ -44,11 +43,10 @@ class CitasExport implements FromCollection, WithHeadings, ShouldAutoSize
             'ID',
             'Fecha',
             'Hora',
-            'Especialista',
-            'Paciente',
+            'Docente',
+            'Niño',
             'Representante',
             'Estado',
-            'Nota',
             'Asistencia', // Encabezado para el estado de asistencia
         ];
     }
