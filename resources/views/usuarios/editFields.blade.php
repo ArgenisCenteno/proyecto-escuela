@@ -87,6 +87,7 @@
         @enderror
     </div>
 
+    
     <button type="submit" class="btn btn-primary" id="btn-submit">Actualizar Usuario</button>
     <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
 </form>
