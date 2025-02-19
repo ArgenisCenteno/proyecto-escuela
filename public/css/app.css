@@ -1700,9 +1700,9 @@ th{
 }
 
 
-.app-main{
+.app-main{  
     position: relative;
-    background-image: url("../iconos/back.webp");
+    background-image: url("../iconos/back.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

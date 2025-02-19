@@ -5,6 +5,7 @@
     <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+        <div class="invalid-feedback"></div>
         @error('name')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -21,6 +22,7 @@
     <div class="mb-3">
         <label for="password" class="form-label">Contraseña (opcional)</label>
         <input type="password" class="form-control" id="password" name="password">
+        <div class="invalid-feedback"></div>
         @error('password')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -28,7 +30,8 @@
 
     <div class="mb-3">
         <label for="dni" class="form-label">Cédula</label>
-        <input type="text" class="form-control" id="dni" name="dni" value="{{ $user->dni }}" required>
+        <input type="text" id="cedula" class="form-control" id="dni" name="dni" value="{{ $user->dni }}" required>
+        <div class="invalid-feedback"></div>
         @error('dni')
             <div class="text-danger">{{ $message }}</div>
         @enderror
@@ -84,6 +87,6 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+    <button type="submit" class="btn btn-primary" id="btn-submit">Actualizar Usuario</button>
     <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
 </form>

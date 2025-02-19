@@ -39,110 +39,91 @@
 <script src="{{ asset('js/adminlte.js') }}"></script>
 <script src="{{asset('js/sweetalert2.js')}}"></script>
 <script>
-    $(document).ready(function () {
-        $('#telefono').on('input', function () {
-            let telefono = $(this).val();
-            const regex = /^(0412|0424|0414|0426|0416)[0-9]{7}$/;
-            if (telefono.length > 11) {
-                telefono = telefono.slice(0, 11); // Limita la longitud a 9 caracteres
-            }
-            $(this).val(telefono); // Establece el valor limitado
-            if (telefono.length > 11) {
-                // Mensaje de error si tiene más de 11 dígitos
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('El número debe tener un máximo de 11 dígitos.');
-            } else if (!regex.test(telefono)) {
-                // Mensaje de error si no coincide con el patrón
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('El número debe comenzar con 0412, 0414, 0426 o 0416 y tener 11 dígitos en total.');
-            } else {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            }
-        });
+ $(document).ready(function () {
+    function validarFormulario() {
+        if ($('.is-invalid').length > 0) {
+            $('#btn-submit').prop('disabled', true);
+        } else {
+            $('#btn-submit').prop('disabled', false);
+        }
+    }
 
-        $('#nombre').on('input', function () {
-            const cedula = $(this).val();
-            const regex = /^[a-zA-Z\s]+$/;
+    $('#telefono').on('input', function () {
+        let telefono = $(this).val();
+        const regex = /^(0412|0424|0414|0426|0416)[0-9]{7}$/;
 
-            if (regex.test(cedula)) {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Los campos de nombres no pueden tener números.');
-            }
-        })
+        telefono = telefono.slice(0, 11);
+        $(this).val(telefono);
 
-        $('#apellido').on('input', function () {
-            const cedula = $(this).val();
-            const regex = /^[a-zA-Z\s]+$/;
+        if (!regex.test(telefono)) {
+            $(this).addClass('is-invalid').removeClass('is-valid');
+            $(this).next('.invalid-feedback').text('Formato incorrecto. Debe comenzar con 0412, 0414, 0426 o 0416 y tener 11 dígitos.');
+        } else {
+            $(this).removeClass('is-invalid').addClass('is-valid');
+            $(this).next('.invalid-feedback').text('');
+        }
+        validarFormulario();
+    });
 
-            if (regex.test(cedula)) {
-                // Si es válido
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('Los campos de nombres no pueden tener números.');
-            }
-        })
+    function validarTexto(input) {
+        const regex = /^[a-zA-Z\s]+$/;
+        if (regex.test($(input).val())) {
+            $(input).removeClass('is-invalid').addClass('is-valid');
+            $(input).next('.invalid-feedback').text('');
+        } else {
+            $(input).addClass('is-invalid').removeClass('is-valid');
+            $(input).next('.invalid-feedback').text('Este campo solo puede contener letras.');
+        }
+        validarFormulario();
+    }
 
-        $('#cedula').on('input', function () {
-            let cedula = $(this).val().replace(/\D/g, ''); // Elimina cualquier caracter no numérico
-            if (cedula.length > 9) {
-                cedula = cedula.slice(0, 9); // Limita la longitud a 9 caracteres
-            }
-            $(this).val(cedula); // Establece el valor limitado
+    $('#nombre, #apellido').on('input', function () {
+        validarTexto(this);
+    });
 
-            const regex = /^\d{7,9}$/; // Asegura que sean entre 7 y 9 números
-            if (regex.test(cedula)) {
-                $(this).removeClass('is-invalid').addClass('is-valid');
-                $(this).next('.invalid-feedback').text('');
-            } else {
-                $(this).removeClass('is-valid').addClass('is-invalid');
-                $(this).next('.invalid-feedback').text('La cédula debe tener entre 7 y 9 números.');
-            }
-        });
+    $('#cedula').on('input', function () {
+        let cedula = $(this).val().replace(/\D/g, '').slice(0, 9);
+        $(this).val(cedula);
 
-        $('#fecha_nacimiento').on('input', function () {
-        const fecha = $(this).val(); // Obtener el valor del input
-        if (!fecha) return; // Evita errores si el input está vacío
+        if (/^\d{7,9}$/.test(cedula)) {
+            $(this).removeClass('is-invalid').addClass('is-valid');
+            $(this).next('.invalid-feedback').text('');
+        } else {
+            $(this).addClass('is-invalid').removeClass('is-valid');
+            $(this).next('.invalid-feedback').text('Debe tener entre 7 y 9 números.');
+        }
+        validarFormulario();
+    });
+
+    $('#fecha_nacimiento').on('input', function () {
+        const fecha = $(this).val();
+        if (!fecha) return;
 
         const ahora = new Date();
-
-        // Separar la fecha (YYYY-MM-DD)
         const [anio, mes, dia] = fecha.split('-').map(Number);
-        const fechaNacimiento = new Date(anio, mes - 1, dia); // Crear objeto Date
+        const fechaNacimiento = new Date(anio, mes - 1, dia);
 
-        // Calcular edad
         let edad = ahora.getFullYear() - anio;
-        const mesActual = ahora.getMonth() + 1; // Los meses son base 0 en JS
-        const diaActual = ahora.getDate();
-
-        // Ajustar la edad si aún no ha cumplido años este año
-        if (mesActual < mes || (mesActual === mes && diaActual < dia)) {
+        if (ahora.getMonth() + 1 < mes || (ahora.getMonth() + 1 === mes && ahora.getDate() < dia)) {
             edad--;
         }
 
-        // Establecer la edad en el input correspondiente
         $('#edad').val(edad);
 
-        // Validación de la edad mínima
         if (edad >= 12) {
             $(this).removeClass('is-invalid').addClass('is-valid');
             $(this).next('.invalid-feedback').text('');
         } else {
-            $(this).removeClass('is-valid').addClass('is-invalid');
-            $(this).next('.invalid-feedback').text('El representante debe tener más de 11 años.');
+            $(this).addClass('is-invalid').removeClass('is-valid');
+            $(this).next('.invalid-feedback').text('Debe tener más de 11 años.');
         }
+        validarFormulario();
     });
-    });
+
+    // Deshabilitar el botón al cargar la página si hay errores
+    validarFormulario();
+});
+
 </script>
 
 @endsection
