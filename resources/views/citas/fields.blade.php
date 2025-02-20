@@ -6,6 +6,7 @@
             <div class="form-group">
                 <label for="fecha">Fecha</label>
                 <input type="date" name="fecha" id="fecha" class="form-control @error('fecha') is-invalid @enderror" required>
+                <div class="invalid-feedback"></div>
                 @error('fecha')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -17,6 +18,7 @@
     <div class="form-group">
         <label for="hora">Hora</label>
         <input type="text" name="hora" id="hora" class="form-control @error('hora') is-invalid @enderror" required>
+        <div class="invalid-feedback"></div>
         @error('hora')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -69,6 +71,7 @@
                     <option value="Confirmada">Confirmado</option>
                     <option value="Cancelado">Cancelado</option>
                 </select>
+                <div class="invalid-feedback"></div>
                 @error('estatus')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -80,6 +83,7 @@
             <div class="form-group">
                 <label for="nota">Nota</label>
                 <textarea name="nota" id="nota" class="form-control @error('nota') is-invalid @enderror"></textarea>
+                <div class="invalid-feedback"></div>
                 @error('nota')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -87,7 +91,7 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Registrar Cita</button>
+    <button type="submit" class="btn btn-primary" id="btn-submit">Registrar Cita</button>
 </form>
 <link rel="stylesheet" href="{{asset('css/flatpickr.min.css')}}">
 <script src="{{asset('js/flatpickr.min.js')}}"></script>

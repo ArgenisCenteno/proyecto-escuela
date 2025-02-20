@@ -45,98 +45,92 @@
 </script>
 <script>
     $(document).ready(function () {
+        var today = new Date().toISOString().split('T')[0];
+        $('#fecha').attr('min', today);
 
+        function checkFormValidity() {
+            if ($('.is-invalid').length > 0) {
+                $('#btn-submit').prop('disabled', true);
+            } else {
+                $('#btn-submit').prop('disabled', false);
+            }
+        }
 
-
-        $('#fecha').on('change', function () {
+        // Validación de la fecha en tiempo real
+        $('#fecha').on('input', function () {
             var selectedDate = $(this).val();
-            if (!selectedDate) return; // Si no hay fecha seleccionada, no hacer nada
-
             var currentDate = new Date().toISOString().split('T')[0];
-            var dayOfWeek = new Date(selectedDate + 'T00:00:00').getDay(); // Asegura formato correcto
+            var dayOfWeek = new Date(selectedDate).getDay();
 
             if (selectedDate < currentDate) {
-                // Fecha inválida: menor a hoy
                 $(this).removeClass('is-valid').addClass('is-invalid');
-                showErrorMessage($(this), 'La fecha no puede ser menor a hoy.');
-            } else if (dayOfWeek === 0 || dayOfWeek === 6) {
-                // Fecha inválida: sábado (6) o domingo (0)
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">La fecha no puede ser menor a hoy.</div>');
+                } else {
+                    $(this).next('.invalid-feedback').text('La fecha no puede ser menor a hoy.');
+                }
+            } else if (dayOfWeek === 5 || dayOfWeek === 6) {
                 $(this).removeClass('is-valid').addClass('is-invalid');
-                showErrorMessage($(this), 'No se puede pedir cita para un sábado o un domingo.');
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">No se puede pedir cita para un sábado o un domingo.</div>');
+                } else {
+                    $(this).next('.invalid-feedback').text('No se puede pedir cita para un sábado o un domingo.');
+                }
             } else {
-                // Fecha válida
                 $(this).removeClass('is-invalid').addClass('is-valid');
-                removeErrorMessage($(this));
+                $(this).next('.invalid-feedback').text('');
             }
+
+            checkFormValidity();
         });
 
-        // Función para mostrar mensaje de error
-        function showErrorMessage(element, message) {
-            if (!element.next('.invalid-feedback').length) {
-                element.after('<div class="invalid-feedback">' + message + '</div>');
-            } else {
-                element.next('.invalid-feedback').text(message);
-            }
-        }
-
-        // Función para remover mensaje de error
-        function removeErrorMessage(element) {
-            element.next('.invalid-feedback').remove();
-        }
-
-
-
+        // Validación de la hora en tiempo real
         $('#hora').on('input', function () {
-    var selectedTime = $(this).val().trim(); // Obtener y limpiar el input
-    var regex = /^(0?[1-9]|1[0-2]):([0-5][0-9])\s?(AM|PM)$/i;
+            var selectedTime = $(this).val().trim();
+            var regex = /^(0?[7-9]|1[0-2]):([0-5][0-9])\s?(AM|PM)$/i;
 
+            if (!regex.test(selectedTime) || selectedTime.match(/^1:/i)) {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">La hora debe ser entre 07:00 AM y 01:00 PM.</div>');
+                } else {
+                    $(this).next('.invalid-feedback').text('La hora debe ser entre 07:00 AM y 01:00 PM.');
+                }
+                checkFormValidity();
+                return;
+            }
 
-    console.log(selectedTime)
-    // Verificar si el formato es correcto
-    if (!regex.test(selectedTime)) {
-        $(this).removeClass('is-valid').addClass('is-invalid');
-        $(this).next('.invalid-feedback').text('Formato inválido. Use hh:mm AM/PM.');
-        return;
-    }
+            let [, hour, minute, period] = selectedTime.match(regex);
+            hour = parseInt(hour, 10);
+            minute = parseInt(minute, 10);
+            period = period.toUpperCase();
 
-    // Extraer hora, minutos y AM/PM
-    let [, hour, minute, period] = selectedTime.match(regex);
-    hour = parseInt(hour);
-    minute = parseInt(minute);
+            if (period === 'PM' && hour !== 12) {
+                hour += 12;
+            } else if (period === 'AM' && hour === 12) {
+                hour = 0;
+            }
 
-    // Imprimir valores para depuración
-    console.log(`Hora: ${hour}, Minutos: ${minute}, Periodo: ${period}`);
+            let totalMinutes = hour * 60 + minute;
+            let startTime = 7 * 60;
+            let endTime = 13 * 60;
 
-    // Convertir a formato 24 horas para la comparación
-    if (period.toUpperCase() === 'PM' && hour !== 12) {
-        hour += 12; // Para convertir 1 PM en 13, 2 PM en 14, etc.
-    } else if (period.toUpperCase() === 'AM' && hour === 12) {
-        hour = 0; // 12 AM se convierte en 00
-    }
+            if (totalMinutes >= startTime && totalMinutes <= endTime) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+                $(this).next('.invalid-feedback').text('');
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">La hora debe estar entre 07:00 AM y 01:00 PM.</div>');
+                } else {
+                    $(this).next('.invalid-feedback').text('La hora debe estar entre 07:00 AM y 01:00 PM.');
+                }
+            }
 
-    // Imprimir la hora convertida para ver si la conversión fue correcta
-    console.log(`Hora convertida a 24h: ${hour}:${minute}`);
+            checkFormValidity();
+        });
 
-    // Calcular los minutos totales
-    let totalMinutes = hour * 60 + minute;
-    console.log(`Total en minutos: ${totalMinutes}`);
-
-    // Definir los rangos de horas en minutos
-    let startTime = 7 * 60;  // 07:00 AM en minutos (420)
-    let endTime = 13 * 60;   // 01:00 PM en minutos (780)
-
-    // Validar si la hora está en el rango permitido
-    if (totalMinutes >= startTime && totalMinutes <= endTime) {
-        $(this).removeClass('is-invalid').addClass('is-valid');
-        $(this).next('.invalid-feedback').text('');
-    } else {
-        $(this).removeClass('is-valid').addClass('is-invalid');
-        $(this).next('.invalid-feedback').text('La hora debe estar entre las 07:00 AM y la 01:00 PM.');
-    }
-});
-
-
-
+        // Inicializar Select2
         $('#especialista_id').select2({
             placeholder: "Seleccione un Especialista",
             allowClear: true
@@ -146,7 +140,10 @@
             placeholder: "Seleccione un Paciente",
             allowClear: true
         });
-    });
 
+        // Inicializar el botón deshabilitado
+        checkFormValidity();
+    });
 </script>
+
 @endsection

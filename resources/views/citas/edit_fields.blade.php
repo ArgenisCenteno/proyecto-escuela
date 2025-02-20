@@ -59,6 +59,7 @@
         <div class="col-md-6 mb-3">
             <label for="fecha">Fecha de la Cita:</label>
             <input type="date" id="fecha" name="fecha" class="form-control" value="{{ $cita->fecha }}" required>
+            <div class="invalid-feedback"></div>
             @error('fecha')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -66,6 +67,7 @@
         <div class="col-md-6 mb-3">
             <label for="hora">Hora de la Cita:</label>
             <input type="time" id="hora" name="hora" class="form-control" value="{{ $cita->hora }}" required>
+            <div class="invalid-feedback"></div>
             @error('hora')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -123,5 +125,5 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Actualizar Cita</button>
+    <button type="submit" class="btn btn-primary" id="btn-submit">Actualizar Cita</button>
 </form>
