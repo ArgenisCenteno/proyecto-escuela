@@ -114,6 +114,7 @@
             let totalMinutes = hour * 60 + minute;
             let startTime = 7 * 60;
             let endTime = 13 * 60;
+            
 
             if (totalMinutes >= startTime && totalMinutes <= endTime) {
                 $(this).removeClass('is-invalid').addClass('is-valid');
