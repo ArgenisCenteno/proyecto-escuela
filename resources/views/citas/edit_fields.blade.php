@@ -63,10 +63,12 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        
         <div class="col-md-6 mb-3">
             <label for="hora">Hora de la Cita:</label>
-            <input type="time" id="hora" name="hora" class="form-control" value="{{ $cita->hora }}" required>
+            <input type="text" name="hora" id="hora" value="{{ $cita->hora }}" class="form-control @error('hora') is-invalid @enderror" required>
             <div class="invalid-feedback"></div>
+             <div class="invalid-feedback"></div>
             @error('hora')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -179,5 +181,15 @@
 
         estatusSelect.addEventListener("change", actualizarOpcionesAsistencia);
         actualizarOpcionesAsistencia(); // Llamar para establecer las opciones correctas al cargar
+    });
+</script>
+<link rel="stylesheet" href="{{asset('css/flatpickr.min.css')}}">
+<script src="{{asset('js/flatpickr.min.js')}}"></script>
+<script>
+    flatpickr("#hora", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "h:i K", // Formato de 12 horas con AM/PM
+        time_24hr: false
     });
 </script>

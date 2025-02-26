@@ -226,8 +226,16 @@ class CitaController extends Controller
         }
 
         $cita = Cita::findOrFail($id);
+
+        if($cita->estatus != 'Pendiente' && $request->estatus == 'Pendiente'){
+            Alert::error('¡Error!', 'Incongruencia en estado de la cita, una cita procesada no puede volver a estar pendiente.')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+
+            return redirect()->back();
+        }
+
+        $hora = Carbon::createFromFormat('h:i A', $request->hora)->format('H:i');
         $cita->fecha = $request->fecha;
-        $cita->hora = $request->hora;
+        $cita->hora =  $hora ;
         $cita->especialista_id = $request->especialista_id;
         $cita->paciente_id = $request->paciente_id;
         $cita->nota = $request->nota_cita;

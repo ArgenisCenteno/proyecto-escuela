@@ -30,7 +30,7 @@
         <!-- Especialista Field -->
         <div class="col-md-6">
             <div class="form-group">
-                <label for="especialista_id">Especialista</label>
+                <label for="especialista_id">Docente</label>
                 <select name="especialista_id" id="especialista_id" class="form-control @error('especialista_id') is-invalid @enderror" >
                 <option value="">Seleccione un opción</option>
   
@@ -47,7 +47,7 @@
         <!-- Paciente Field -->
         <div class="col-md-6">
             <div class="form-group">
-                <label for="paciente_id">Paciente</label>
+                <label for="paciente_id">Estudiante</label>
                 <select name="paciente_id" id="paciente_id" class="form-control @error('paciente_id') is-invalid @enderror" required>
                 <option value="">Seleccione un opción</option>
                 @foreach($pacientes as $paciente)

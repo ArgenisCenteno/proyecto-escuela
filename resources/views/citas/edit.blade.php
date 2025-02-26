@@ -43,7 +43,7 @@
 
         })
     </script>
-   <script>
+<script>
     $(document).ready(function () {
         var today = new Date().toISOString().split('T')[0];
         $('#fecha').attr('min', today);
@@ -89,6 +89,7 @@
             var selectedTime = $(this).val().trim();
             var regex = /^(0?[7-9]|1[0-2]):([0-5][0-9])\s?(AM|PM)$/i;
 
+            console.log(selectedTime)
             if (!regex.test(selectedTime) || selectedTime.match(/^1:/i)) {
                 $(this).removeClass('is-valid').addClass('is-invalid');
                 if (!$(this).next('.invalid-feedback').length) {
@@ -114,6 +115,7 @@
             let totalMinutes = hour * 60 + minute;
             let startTime = 7 * 60;
             let endTime = 13 * 60;
+            
 
             if (totalMinutes >= startTime && totalMinutes <= endTime) {
                 $(this).removeClass('is-invalid').addClass('is-valid');
@@ -145,6 +147,7 @@
         checkFormValidity();
     });
 </script>
+
 
     <script>
         $(document).ready(function () {
