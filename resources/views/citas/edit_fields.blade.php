@@ -29,8 +29,7 @@
         <div class="col-md-6 mb-3">
     <label for="estatus">Estado</label>
     <select name="estatus" id="estatus" class="form-control @error('estatus') is-invalid @enderror" required>
-        <option value="Pendiente" {{ $cita->estatus === 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
-        <option value="Confirmada" {{ $cita->estatus === 'Confirmada' ? 'selected' : '' }}>Confirmado</option>
+        <option value="Pendiente" {{ $cita->estatus === 'Pendiente' ? 'selected' : '' }}>Pendiente</option> 
         <option value="Completada" {{ $cita->estatus === 'Completada' ? 'selected' : '' }}>Completada</option>
         <option value="Cancelada" {{ $cita->estatus === 'Cancelada' ? 'selected' : '' }}>Cancelada</option>
     </select>
@@ -127,3 +126,58 @@
 
     <button type="submit" class="btn btn-primary" id="btn-submit">Actualizar Cita</button>
 </form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const estatusSelect = document.getElementById("estatus");
+        const asistenciaSelect = document.getElementById("asistencia");
+
+        function actualizarOpcionesAsistencia() {
+            const estado = estatusSelect.value;
+            asistenciaSelect.innerHTML = ""; // Limpiar opciones
+
+            let opciones = [];
+
+            if (estado === "Pendiente") {
+                opciones = [
+                    { value: "", text: "Seleccione una opción" },
+                    { value: "No Asistió", text: "No asistió" }
+                ];
+            } else if (estado === "Confirmada") {
+                opciones = [
+                    { value: "", text: "Seleccione una opción" },
+                    { value: "Asistió", text: "Asistió" },
+                    { value: "Tarde", text: "Llegó tarde" },
+                    { value: "No Asistió", text: "No asistió" }
+                ];
+            } else if (estado === "Completada") {
+                opciones = [
+                    { value: "", text: "Seleccione una opción" },
+                    { value: "Asistió", text: "Asistió" },
+                    { value: "Tarde", text: "Llegó tarde" }
+                ];
+            } else if (estado === "Cancelada") {
+                opciones = [
+                    { value: "", text: "Seleccione una opción" },
+                    { value: "No Asistió", text: "No asistió" }
+                ];
+            }
+
+            // Insertar opciones en el select
+            opciones.forEach(opcion => {
+                const optionElement = document.createElement("option");
+                optionElement.value = opcion.value;
+                optionElement.textContent = opcion.text;
+
+                // Si la opción coincide con el valor actual, se selecciona
+                if (opcion.value === "{{ $asistencia->estado ?? '' }}") {
+                    optionElement.selected = true;
+                }
+
+                asistenciaSelect.appendChild(optionElement);
+            });
+        }
+
+        estatusSelect.addEventListener("change", actualizarOpcionesAsistencia);
+        actualizarOpcionesAsistencia(); // Llamar para establecer las opciones correctas al cargar
+    });
+</script>
